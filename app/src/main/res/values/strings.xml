@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Transposer</string>
+    <string name="scales">Scales</string>
+    <string name="favourites">Favourites</string>
+    <string name="menu_image">menu image</string>
+    <string name="cloud">CLOUD</string>
+    <string name="add_button">Add button</string>
 </resources>
