@@ -5,4 +5,5 @@
     <string name="menu_image">menu image</string>
     <string name="cloud">CLOUD</string>
     <string name="add_button">Add button</string>
+    <string name="settings">Settings</string>
 </resources>
