@@ -9,6 +9,14 @@ import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.MusicInstrument
 import com.github.enteraname74.transposer.classes.Scale
+import com.github.enteraname74.transposer.classes.Transposition
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.ObjectOutputStream
 
 class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var startScale : Scale
@@ -51,6 +59,9 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
 
         val exitButton = findViewById<ImageView>(R.id.back_button)
         exitButton.setOnClickListener { finish() }
+
+        val addTranspositionButton = findViewById<Button>(R.id.save_transposition_button)
+        addTranspositionButton.setOnClickListener { addTransposition() }
     }
 
     override fun onItemSelected(parent : AdapterView<*>?, view : View?, position: Int, id : Long) {
@@ -68,8 +79,7 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
         val newScale = Scale(startScale.scaleName, ArrayList<String>())
 
         // on va chercher ensuite, pour chaque note initial, sa note d'arrivée :
-        for (i in 0 until startScale.scaleList.size){
-            val note = startScale.scaleList[i]
+        for (note in startScale.scaleList){
 
             val initialIndex = AppData.allNotes.indexOf(note)
             Log.d("Initial Index", initialIndex.toString())
@@ -84,4 +94,29 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+    private fun addTransposition() {
+        val newTransposition = Transposition(
+            "test",
+            startScale.scaleList,
+            startInstrument,
+            endScale.scaleList,
+            endInstrument
+        )
+
+        AppData.allTranspositions.add(newTransposition)
+        CoroutineScope(Dispatchers.IO).launch { writeAllTranspositions() }
+        finish()
+    }
+
+    private fun writeAllTranspositions(){
+        val path = applicationContext.filesDir
+        try {
+            val oos = ObjectOutputStream(FileOutputStream(File(path, AppData.allTranspositionFile)))
+            oos.writeObject(AppData.allTranspositions)
+            oos.close()
+        } catch (error : IOException){
+            Log.d("Error write",error.toString())
+        }
+    }
 }

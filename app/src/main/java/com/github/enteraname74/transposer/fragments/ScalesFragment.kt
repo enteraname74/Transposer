@@ -16,12 +16,6 @@ import com.github.enteraname74.transposer.classes.Scale
 
 class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
     private lateinit var recyclerView : RecyclerView
-    private lateinit var adapter : ScalesList
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        adapter = ScalesList(activity?.applicationContext as Context, this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +24,7 @@ class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
         val view = inflater.inflate(R.layout.fragment_scales, container, false)
 
         recyclerView = view.findViewById(R.id.scales_recycler_view)
-        recyclerView.adapter = adapter
+        recyclerView.adapter = ScalesList(context as Context, this)
 
         return view
     }

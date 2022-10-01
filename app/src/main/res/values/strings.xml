@@ -19,4 +19,5 @@
     <string name="instrument">Instrument :</string>
     <string name="end_instrument">End Instrument</string>
     <string name="end_scale">End Scale</string>
+    <string name="transpositions">Transpositions</string>
 </resources>

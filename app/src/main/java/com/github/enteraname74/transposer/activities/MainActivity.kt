@@ -13,15 +13,26 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.adapters.VpAdapter
+import com.github.enteraname74.transposer.classes.AppData
+import com.github.enteraname74.transposer.classes.Transposition
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileInputStream
+import java.io.IOException
+import java.io.ObjectInputStream
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        CoroutineScope(Dispatchers.IO).launch { readAllTranspositions() }
 
         findViewById<Button>(R.id.cloud_button).setOnClickListener { toCloudActivity() }
 
@@ -39,7 +50,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         TabLayoutMediator(tabLayout, viewPager){tab, index ->
             tab.text = when(index){
                 0 -> {resources.getString(R.string.scales)}
-                1 -> {resources.getString(R.string.favourites)}
+                1 -> {resources.getString(R.string.transpositions)}
+                2 -> {resources.getString(R.string.favourites)}
                 else -> { throw Resources.NotFoundException("Position not found")}
             }
         }.attach()
@@ -64,5 +76,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return true
+    }
+
+    private fun readAllTranspositions(){
+        val path = applicationContext.filesDir
+        var content = ArrayList<Transposition>()
+        try {
+            val ois = ObjectInputStream(FileInputStream(File(path, AppData.allTranspositionFile)))
+            content = ois.readObject() as ArrayList<Transposition>
+            ois.close()
+        } catch (error : IOException){
+            Log.d("Error read",error.toString())
+        }
+        AppData.allTranspositions = content
     }
 }

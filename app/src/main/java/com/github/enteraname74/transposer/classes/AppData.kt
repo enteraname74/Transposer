@@ -5,6 +5,8 @@ import kotlin.collections.ArrayList
 class AppData {
     companion object {
 
+        val allTranspositionFile = "allTranspositions.transpose"
+
         val allNotes = ArrayList<String>(listOf(
             "DO",
             "DO#",
@@ -38,5 +40,7 @@ class AppData {
             Scale("LAB Majeur", ArrayList(listOf("DO#","RE#","MI","FA","SOL#","LA#","SI","DO#"))),
             Scale("FA Majeur", ArrayList(listOf("DO#","RE#","MI","FA","SOL#","LA#","SI","DO#"))))
         )
+
+        var allTranspositions = ArrayList<Transposition>()
     }
 }
