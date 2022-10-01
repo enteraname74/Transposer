@@ -73,7 +73,7 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
 
             val initialIndex = AppData.allNotes.indexOf(note)
             Log.d("Initial Index", initialIndex.toString())
-            val endIndex = (initialIndex + toneVariation) % AppData.allNotes.size
+            val endIndex = Math.floorMod((initialIndex + toneVariation), AppData.allNotes.size)
             Log.d("End Index", endIndex.toString())
 
             newScale.scaleList.add(AppData.allNotes[endIndex])
