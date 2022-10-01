@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.adapters.VpAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -42,10 +43,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 else -> { throw Resources.NotFoundException("Position not found")}
             }
         }.attach()
+
+        val createTransposition = findViewById<FloatingActionButton>(R.id.add_transposition_button)
+        createTransposition.setOnClickListener { createTransposition() }
     }
 
     private fun toCloudActivity(){
         val intent = Intent(this, CloudActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun createTransposition(){
+        val intent = Intent(this, TranspositionActivity::class.java)
         startActivity(intent)
     }
 

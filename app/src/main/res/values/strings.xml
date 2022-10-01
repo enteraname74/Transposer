@@ -13,4 +13,10 @@
     <string name="todo_favourites">TODO FAVOURITES</string>
     <string name="values">Values :</string>
     <string name="values_to_replace">VALUES TO REPLACE</string>
+    <string name="start_scale">Start Scale</string>
+    <string name="back_button">back button</string>
+    <string name="scale">Scale :</string>
+    <string name="instrument">Instrument :</string>
+    <string name="end_instrument">End Instrument</string>
+    <string name="end_scale">End Scale</string>
 </resources>
