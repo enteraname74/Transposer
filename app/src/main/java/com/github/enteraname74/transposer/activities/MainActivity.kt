@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewPager.adapter = VpAdapter(this)
 
         TabLayoutMediator(tabLayout, viewPager){tab, index ->
-            Log.d("INFOS", tab.toString())
-            Log.d("INFOS", index.toString())
             tab.text = when(index){
                 0 -> {resources.getString(R.string.scales)}
                 1 -> {resources.getString(R.string.favourites)}
