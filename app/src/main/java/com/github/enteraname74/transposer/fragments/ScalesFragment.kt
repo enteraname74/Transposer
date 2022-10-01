@@ -8,6 +8,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.telephony.SmsManager
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.activities.SeeScaleActivity
 import com.github.enteraname74.transposer.adapters.ScalesList
 import com.github.enteraname74.transposer.classes.Scale
+import java.time.Duration
 
 class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
     private lateinit var recyclerView : RecyclerView
@@ -65,6 +67,14 @@ class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
                 val phoneIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
                 val num = cursor.getString(phoneIndex)
                 Log.d("RESULT", num.toString())
+
+                try {
+                    val smsManager = context?.getSystemService(SmsManager::class.java)
+                    smsManager?.sendTextMessage(num,null,"Si tu reçois ce message c'est que l'application android marche.",null,null)
+                    Toast.makeText(context, "The message has been sent",Toast.LENGTH_SHORT).show()
+                } catch (ex : Exception) {
+                    Toast.makeText(context, "The message cannot be sent",Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
