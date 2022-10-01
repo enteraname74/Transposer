@@ -1,6 +1,7 @@
 package com.github.enteraname74.transposer.activities
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
@@ -60,6 +63,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         createTransposition.setOnClickListener { createTransposition() }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (!checkPermission(android.Manifest.permission.READ_CONTACTS)) {
+            requestPermission(android.Manifest.permission.READ_CONTACTS)
+        }
+        if (!checkPermission(android.Manifest.permission.SEND_SMS)) {
+            requestPermission(android.Manifest.permission.SEND_SMS)
+        }
+    }
+
     private fun toCloudActivity(){
         val intent = Intent(this, CloudActivity::class.java)
         startActivity(intent)
@@ -89,5 +102,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Log.d("Error read",error.toString())
         }
         AppData.allTranspositions = content
+    }
+
+    private fun checkPermission(permission : String) : Boolean {
+        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestPermission(permission : String) {
+        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)){
+            ActivityCompat.requestPermissions(this, arrayOf(permission), 69)
+        }
     }
 }

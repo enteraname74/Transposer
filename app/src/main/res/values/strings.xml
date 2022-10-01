@@ -20,4 +20,5 @@
     <string name="end_instrument">End Instrument</string>
     <string name="end_scale">End Scale</string>
     <string name="transpositions">Transpositions</string>
+    <string name="send_to_a_contact">SEND TO A CONTACT</string>
 </resources>

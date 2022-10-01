@@ -16,16 +16,27 @@ data class ScalesList(
     ) : RecyclerView.Adapter<ScalesList.ScaleViewHolder>(), Serializable {
 
     class ScaleViewHolder(itemView: View, private var onScaleListener: OnScaleListener) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener,View.OnCreateContextMenuListener {
 
         val scaleName: TextView = itemView.findViewById(R.id.scale_name)
         init {
             super.itemView
             itemView.setOnClickListener(this)
+            itemView.setOnLongClickListener(this)
+            itemView.setOnCreateContextMenuListener(this)
         }
 
         override fun onClick(v: View?) {
             this.onScaleListener.onScaleClick(adapterPosition)
+        }
+
+        override fun onLongClick(v: View?): Boolean {
+            itemView.showContextMenu()
+            return true
+        }
+
+        override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+            menu?.add(adapterPosition, 0, 0, itemView.resources.getString(R.string.send_to_a_contact))
         }
     }
 
