@@ -22,4 +22,5 @@
     <string name="transpositions">Transpositions</string>
     <string name="send_to_a_contact">SEND TO A CONTACT</string>
     <string name="transposition_s_name">Transposition\'s Name</string>
+    <string name="delete_transposition">Delete Transposition</string>
 </resources>

@@ -17,12 +17,14 @@ data class TranspositionsList(
 ) : RecyclerView.Adapter<TranspositionsList.TranspositionViewHolder>(), Serializable {
 
     class TranspositionViewHolder(itemView: View, private var onScaleListener: OnTranspositionListener) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
+        RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener, View.OnCreateContextMenuListener {
 
         val scaleName: TextView = itemView.findViewById(R.id.scale_name)
         init {
             super.itemView
             itemView.setOnClickListener(this)
+            itemView.setOnLongClickListener(this)
+            itemView.setOnCreateContextMenuListener(this)
         }
 
         override fun onClick(v: View?) {
@@ -32,6 +34,10 @@ data class TranspositionsList(
         override fun onLongClick(p0: View?): Boolean {
             this.onScaleListener.onTranspositionLongClick(adapterPosition)
             return true
+        }
+
+        override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+            menu?.add(adapterPosition, 10, 0, itemView.resources.getString(R.string.delete_transposition))
         }
     }
 

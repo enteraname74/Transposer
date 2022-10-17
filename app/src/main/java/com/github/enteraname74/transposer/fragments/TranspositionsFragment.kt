@@ -47,6 +47,6 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
     }
 
     override fun onTranspositionLongClick(position: Int) {
-        TODO("Not yet implemented")
+
     }
 }
