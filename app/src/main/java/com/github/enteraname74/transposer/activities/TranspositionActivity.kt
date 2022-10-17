@@ -1,10 +1,13 @@
 package com.github.enteraname74.transposer.activities
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.MusicInstrument
@@ -96,17 +99,39 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
     override fun onNothingSelected(p0: AdapterView<*>?) {}
 
     private fun addTransposition() {
-        val newTransposition = Transposition(
-            "test",
-            startScale.scaleList,
-            startInstrument,
-            endScale.scaleList,
-            endInstrument
-        )
+        val builder = AlertDialog.Builder(this@TranspositionActivity)
+        builder.setTitle("Specify the name of new transposition")
 
-        AppData.allTranspositions.add(newTransposition)
-        CoroutineScope(Dispatchers.IO).launch { writeAllTranspositions() }
-        finish()
+        // L'entrée :
+        val inputText = EditText(this@TranspositionActivity)
+        // Le type d'entrée :
+        inputText.inputType = InputType.TYPE_CLASS_TEXT
+        builder.setView(inputText)
+
+
+        builder.setPositiveButton("OK") { _, _ ->
+            if(inputText.text.toString() != "" && AppData.allTranspositions.find { it.transpositionName == inputText.text.toString()} == null){
+                val newTransposition = Transposition(
+                    inputText.text.toString(),
+                    startScale.scaleList,
+                    startInstrument,
+                    endScale.scaleList,
+                    endInstrument
+                )
+
+                AppData.allTranspositions.add(newTransposition)
+                CoroutineScope(Dispatchers.IO).launch { writeAllTranspositions() }
+                finish()
+            } else {
+                Toast.makeText(applicationContext, "A title must be set correctly !", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        builder.setNegativeButton("CANCEL") {dialogInterface, _ ->
+            dialogInterface.cancel()
+        }
+
+        builder.show()
     }
 
     private fun writeAllTranspositions(){

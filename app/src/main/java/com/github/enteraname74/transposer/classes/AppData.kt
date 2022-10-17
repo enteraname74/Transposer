@@ -33,11 +33,11 @@ class AppData {
             Scale("La Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI","DO"))),
             Scale("FA Majeur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA#","SI","DO"))),
             Scale("RE Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA#","SI","DO"))),
-            Scale("SIB Majeur", ArrayList(listOf("DO","RE#","MI","FA","SOL","LA#","SI","DO"))),
+            Scale("SI♭ Majeur", ArrayList(listOf("DO","RE#","MI","FA","SOL","LA#","SI","DO"))),
             Scale("SOL Mineur", ArrayList(listOf("DO","RE#","MI","FA","SOL","LA#","SI","DO"))),
             Scale("MIB Majeur", ArrayList(listOf("DO","RE#","MI","FA","SOL#","LA#","SI","DO"))),
             Scale("DO Mineur", ArrayList(listOf("DO","RE#","MI","FA","SOL#","LA#","SI","DO"))),
-            Scale("LAB Majeur", ArrayList(listOf("DO#","RE#","MI","FA","SOL#","LA#","SI","DO#"))),
+            Scale("LA♭ Majeur", ArrayList(listOf("DO#","RE#","MI","FA","SOL#","LA#","SI","DO#"))),
             Scale("FA Majeur", ArrayList(listOf("DO#","RE#","MI","FA","SOL#","LA#","SI","DO#"))))
         )
 

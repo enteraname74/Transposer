@@ -21,11 +21,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.activities.SeeScaleActivity
 import com.github.enteraname74.transposer.adapters.ScalesList
+import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.Scale
 import java.time.Duration
 
 class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
     private lateinit var recyclerView : RecyclerView
+    private var selectedScale : Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +53,7 @@ class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
             0 -> {
                 // SEND TO A CONTACT :
                 val getContactIntent = Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
+                selectedScale = item.groupId
                 resultLauncher.launch(getContactIntent)
                 true
             }
@@ -69,8 +72,10 @@ class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
                 Log.d("RESULT", num.toString())
 
                 try {
-                    val smsManager = context?.getSystemService(SmsManager::class.java)
-                    smsManager?.sendTextMessage(num,null,"Si tu reçois ce message c'est que l'application android marche.",null,null)
+                    val smsManager = SmsManager.getDefault()
+
+                    smsManager?.sendTextMessage(num,null,
+                        AppData.scalesList[selectedScale].scaleName +  " : \n" + AppData.scalesList[selectedScale].scaleList,null,null)
                     Toast.makeText(context, "The message has been sent",Toast.LENGTH_SHORT).show()
                 } catch (ex : Exception) {
                     Toast.makeText(context, "The message cannot be sent",Toast.LENGTH_SHORT).show()
