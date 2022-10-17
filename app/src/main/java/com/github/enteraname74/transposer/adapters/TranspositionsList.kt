@@ -17,7 +17,7 @@ data class TranspositionsList(
 ) : RecyclerView.Adapter<TranspositionsList.TranspositionViewHolder>(), Serializable {
 
     class TranspositionViewHolder(itemView: View, private var onScaleListener: OnTranspositionListener) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
 
         val scaleName: TextView = itemView.findViewById(R.id.scale_name)
         init {
@@ -27,6 +27,11 @@ data class TranspositionsList(
 
         override fun onClick(v: View?) {
             this.onScaleListener.onTranspositionClick(adapterPosition)
+        }
+
+        override fun onLongClick(p0: View?): Boolean {
+            this.onScaleListener.onTranspositionLongClick(adapterPosition)
+            return true
         }
     }
 
@@ -50,5 +55,7 @@ data class TranspositionsList(
 
     interface OnTranspositionListener {
         fun onTranspositionClick(position: Int)
+
+        fun onTranspositionLongClick(position : Int)
     }
 }

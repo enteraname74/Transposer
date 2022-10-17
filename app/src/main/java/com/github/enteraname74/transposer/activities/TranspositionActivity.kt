@@ -108,7 +108,6 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
         inputText.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(inputText)
 
-
         builder.setPositiveButton("OK") { _, _ ->
             if(inputText.text.toString() != "" && AppData.allTranspositions.find { it.transpositionName == inputText.text.toString()} == null){
                 val newTransposition = Transposition(

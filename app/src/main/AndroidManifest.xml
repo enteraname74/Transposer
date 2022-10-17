@@ -17,7 +17,9 @@
         android:theme="@style/Theme.Transposer"
         tools:targetApi="31">
         <activity
-            android:theme="@style/Theme.Transposer"
+            android:name=".activities.SeeTranspositionActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.TranspositionActivity"
             android:exported="false" />
         <activity
