@@ -57,7 +57,7 @@ class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
                 resultLauncher.launch(getContactIntent)
                 true
             }
-            else -> true
+            else -> super.onContextItemSelected(item)
         }
     }
 

@@ -32,12 +32,13 @@ data class TranspositionsList(
         }
 
         override fun onLongClick(p0: View?): Boolean {
-            this.onScaleListener.onTranspositionLongClick(adapterPosition)
+            itemView.showContextMenu()
             return true
         }
 
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
             menu?.add(adapterPosition, 10, 0, itemView.resources.getString(R.string.delete_transposition))
+            menu?.add(adapterPosition, 11, 0, itemView.resources.getString(R.string.change_favourite_statue))
         }
     }
 
@@ -61,7 +62,5 @@ data class TranspositionsList(
 
     interface OnTranspositionListener {
         fun onTranspositionClick(position: Int)
-
-        fun onTranspositionLongClick(position : Int)
     }
 }

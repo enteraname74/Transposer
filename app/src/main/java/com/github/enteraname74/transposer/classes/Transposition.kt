@@ -8,6 +8,6 @@ class Transposition(
     val startInstrument: MusicInstrument,
     val endPartition : ArrayList<String>,
     val endInstrument: MusicInstrument,
-    val isFavourite : Boolean = false
+    var isFavourite : Boolean = false
 ) : Serializable{
 }
