@@ -8,6 +8,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/layout/activity_see_scale.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/activity_see_transposition.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/fragment_favourites.xml" value="0.24322916666666666" />
+        <entry key="app/src/main/res/layout/fragment_scales.xml" value="0.24322916666666666" />
+        <entry key="app/src/main/res/layout/fragment_transpositions.xml" value="0.24322916666666666" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.35260416666666666" />
       </map>
     </option>

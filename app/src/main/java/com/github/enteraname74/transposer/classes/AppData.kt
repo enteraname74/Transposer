@@ -48,6 +48,8 @@ class AppData {
 
         var allTranspositions = ArrayList<Transposition>()
 
+        var favouritesList = ArrayList<Transposition>()
+
         fun writeAllTranspositions(path : File){
             try {
                 val oos = ObjectOutputStream(FileOutputStream(File(path, allTranspositionFile)))

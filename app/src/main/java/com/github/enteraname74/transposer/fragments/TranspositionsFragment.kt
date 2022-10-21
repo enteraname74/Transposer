@@ -59,23 +59,29 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
     // L'id du champ selectionné doit être différent de tous les autres champs disponibles dans les autres fragments pour éviter d'appeler le onContextItemSelected d'autres fragments :
     override fun onContextItemSelected(item: MenuItem): Boolean {
         println(item.itemId.toString())
+        val globalIndex = AppData.allTranspositions.indexOf(AppData.allTranspositions[item.groupId])
+        val element = AppData.allTranspositions[globalIndex]
         return when (item.itemId) {
             10 -> {
                 // DELETE TRANSPOSITION
-                println("del")
-                AppData.allTranspositions.removeAt(item.groupId)
+                AppData.allTranspositions.remove(element)
+                AppData.favouritesList.remove(element)
+
+
                 transpositionRecyclerView.adapter?.notifyItemRemoved(item.groupId)
                 CoroutineScope(Dispatchers.IO).launch { AppData.writeAllTranspositions(context?.applicationContext?.filesDir as File) }
                 Toast.makeText(context, R.string.transposition_has_been_deleted, Toast.LENGTH_SHORT).show()
                 true
             }
             11 -> {
-                // ADD TRANSPOSITION TO FAVOURITE
+                // CHANGE FAVOURITE STATUE OF TRANSPOSITION
                 if (AppData.allTranspositions[item.groupId].isFavourite) {
                     AppData.allTranspositions[item.groupId].isFavourite = false
+                    AppData.favouritesList.remove(element)
                     Toast.makeText(context, R.string.transposition_removed_from_favourite, Toast.LENGTH_SHORT).show()
                 } else {
                     AppData.allTranspositions[item.groupId].isFavourite = true
+                    AppData.favouritesList.add(element)
                     Toast.makeText(context, R.string.transposition_added_to_favourite, Toast.LENGTH_SHORT).show()
                 }
                 CoroutineScope(Dispatchers.IO).launch { AppData.writeAllTranspositions(context?.applicationContext?.filesDir as File) }
