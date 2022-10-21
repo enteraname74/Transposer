@@ -5,18 +5,17 @@ import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.enteraname74.transposer.R
-import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.Transposition
 import java.io.Serializable
 
 // Classe permettant de représenter une liste de musiques :
-class TranspositionsList(
+class FavouriteList(
     private val context : Context,
     var list : ArrayList<Transposition>,
-    private val transpositionListener : OnTranspositionListener
-) : RecyclerView.Adapter<TranspositionsList.TranspositionViewHolder>(), Serializable {
+    private val favouriteListener : OnFavouriteListener
+) : RecyclerView.Adapter<FavouriteList.FavouriteViewHolder>(), Serializable {
 
-    class TranspositionViewHolder(itemView: View, private var onScaleListener: OnTranspositionListener) :
+    class FavouriteViewHolder(itemView: View, private var onScaleListener: OnFavouriteListener) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener, View.OnCreateContextMenuListener {
 
         val scaleName: TextView = itemView.findViewById(R.id.scale_name)
@@ -28,7 +27,7 @@ class TranspositionsList(
         }
 
         override fun onClick(v: View?) {
-            this.onScaleListener.onTranspositionClick(adapterPosition)
+            this.onScaleListener.onFavouriteClick(adapterPosition)
         }
 
         override fun onLongClick(p0: View?): Boolean {
@@ -37,22 +36,22 @@ class TranspositionsList(
         }
 
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-            menu?.add(adapterPosition, 10, 0, itemView.resources.getString(R.string.delete_transposition))
-            menu?.add(adapterPosition, 11, 0, itemView.resources.getString(R.string.change_favourite_statue))
+            menu?.add(adapterPosition, 20, 0, itemView.resources.getString(R.string.delete_transposition))
+            menu?.add(adapterPosition, 21, 0, itemView.resources.getString(R.string.change_favourite_statue))
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TranspositionViewHolder {
-        return TranspositionViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouriteViewHolder {
+        return FavouriteViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.scale_layout,
                 parent,
                 false
-            ), transpositionListener
+            ), favouriteListener
         )
     }
 
-    override fun onBindViewHolder(holder: TranspositionViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavouriteViewHolder, position: Int) {
         holder.scaleName.text = list[position].transpositionName
     }
 
@@ -60,7 +59,7 @@ class TranspositionsList(
         return list.size
     }
 
-    interface OnTranspositionListener {
-        fun onTranspositionClick(position: Int)
+    interface OnFavouriteListener {
+        fun onFavouriteClick(position: Int)
     }
 }

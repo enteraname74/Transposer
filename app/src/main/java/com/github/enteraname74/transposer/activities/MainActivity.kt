@@ -35,7 +35,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        CoroutineScope(Dispatchers.IO).launch { readAllTranspositions() }
+        CoroutineScope(Dispatchers.IO).launch {
+            readAllTranspositions()
+            // Une fois nos transpositions récupérées, on initialise la liste des favoris :
+            for (transposition in AppData.allTranspositions){
+                if (transposition.isFavourite){
+                    AppData.favouritesList.add(transposition)
+                }
+            }}
 
         findViewById<Button>(R.id.cloud_button).setOnClickListener { toCloudActivity() }
 

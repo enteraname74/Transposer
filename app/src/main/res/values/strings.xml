@@ -22,4 +22,10 @@
     <string name="end_scale">End Scale</string>
     <string name="transpositions">Transpositions</string>
     <string name="send_to_a_contact">Send to a contact</string>
+    <string name="transposition_s_name">Transposition\'s Name</string>
+    <string name="delete_transposition">Delete Transposition</string>
+    <string name="change_favourite_statue">Change Favourite Statue</string>
+    <string name="transposition_has_been_deleted">Transposition has been deleted</string>
+    <string name="transposition_removed_from_favourite">Transposition removed from the favourites</string>
+    <string name="transposition_added_to_favourite">Transposition added to the favourites</string>
 </resources>
