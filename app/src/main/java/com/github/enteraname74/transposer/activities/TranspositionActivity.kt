@@ -1,18 +1,27 @@
 package com.github.enteraname74.transposer.activities
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
+import android.content.res.Resources
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.github.enteraname74.transposer.R
+import com.github.enteraname74.transposer.adapters.CreateTranspositionVpAdapter
 import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.MusicInstrument
 import com.github.enteraname74.transposer.classes.Scale
 import com.github.enteraname74.transposer.classes.Transposition
+import com.github.enteraname74.transposer.fragments.EndInstrumentFragment
+import com.github.enteraname74.transposer.fragments.EndScaleFragment
+import com.github.enteraname74.transposer.fragments.StartInstrumentFragment
+import com.github.enteraname74.transposer.fragments.StartScaleFragment
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,86 +30,70 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.ObjectOutputStream
 
-class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    private lateinit var startScale : Scale
-    private lateinit var startInstrument : MusicInstrument
-    private lateinit var endScale: Scale
-    private lateinit var endInstrument: MusicInstrument
-    private lateinit var endScaleTextView : TextView
+class TranspositionActivity : AppCompatActivity() {
+    private lateinit var tabLayout : TabLayout
+
+    private val fragmentList = ArrayList<Fragment>(arrayListOf(
+        StartScaleFragment(),
+        StartInstrumentFragment(),
+        EndInstrumentFragment(),
+        EndScaleFragment()
+    ))
+    private var currentFragmentPos = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transposition)
 
-        val scaleSpinner = findViewById<Spinner>(R.id.scale_spinner)
-        val instrumentSpinner = findViewById<Spinner>(R.id.instrument_spinner)
-        val endInstrumentSpinner = findViewById<Spinner>(R.id.end_instrument_spinner)
-        endScaleTextView = findViewById(R.id.end_scale_values)
+        val viewPager = findViewById<ViewPager2>(R.id.view_pager)
+        tabLayout = findViewById(R.id.tab_layout)
+        viewPager.adapter = CreateTranspositionVpAdapter(this)
 
-        val scaleAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, AppData.scalesList.map{ it.scaleName })
-        val instrumentAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, AppData.instruments.map{ it.instrumentName })
-        val endInstrumentAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, AppData.instruments.map{ it.instrumentName })
-
-        scaleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        scaleSpinner.adapter = scaleAdapter
-        scaleSpinner.onItemSelectedListener = this
-
-        instrumentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        instrumentSpinner.adapter = instrumentAdapter
-        instrumentSpinner.onItemSelectedListener = this
-
-        endInstrumentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        endInstrumentSpinner.adapter = instrumentAdapter
-        endInstrumentSpinner.onItemSelectedListener = this
-
-        startScale = AppData.scalesList[0]
-        startInstrument = AppData.instruments[0]
-        endInstrument = AppData.instruments[0]
-        endScale = AppData.scalesList[0]
-
-        endScaleTextView.text = endScale.scaleList.toString()
-
-        val exitButton = findViewById<ImageView>(R.id.back_button)
-        exitButton.setOnClickListener { finish() }
+        TabLayoutMediator(tabLayout, viewPager){tab, index ->
+            tab.text = when(index){
+                0 -> {resources.getString(R.string.start_scale)}
+                1 -> {resources.getString(R.string.start_instrument)}
+                2 -> {resources.getString(R.string.end_instrument)}
+                3 -> {resources.getString(R.string.end_scale)}
+                else -> { throw Resources.NotFoundException("Position not found")}
+            }
+        }.attach()
 
         val addTranspositionButton = findViewById<Button>(R.id.save_transposition_button)
         addTranspositionButton.setOnClickListener { addTransposition() }
+
+        val previousStep = findViewById<ImageView>(R.id.previous_step)
+        previousStep.setOnClickListener { goToPreviousStep() }
+
+        val nextStep = findViewById<ImageView>(R.id.next_step)
+        nextStep.setOnClickListener { goToNextStep() }
     }
 
-    override fun onItemSelected(parent : AdapterView<*>?, view : View?, position: Int, id : Long) {
-        when(parent?.id){
-            R.id.scale_spinner -> startScale = AppData.scalesList.find { it.scaleName == parent.getItemAtPosition(position) } as Scale
-            R.id.instrument_spinner -> startInstrument = AppData.instruments.find { it.instrumentName == parent.getItemAtPosition(position) } as MusicInstrument
-            R.id.end_instrument_spinner -> endInstrument = AppData.instruments.find { it.instrumentName == parent.getItemAtPosition(position) } as MusicInstrument
-            else -> {}
-        }
 
+    fun createEndScale() : Scale {
         // le décalage de notes :
-        val toneVariation = endInstrument.tone - startInstrument.tone
-        Log.d("TONEVARIATION", toneVariation.toString())
+        val toneVariation = EndInstrumentFragment.endInstrument.tone - StartInstrumentFragment.startInstrument.tone
 
-        val newScale = Scale(startScale.scaleName, ArrayList<String>())
+        val newScale = Scale(StartScaleFragment.startScale.scaleName, ArrayList<String>())
 
         // on va chercher ensuite, pour chaque note initial, sa note d'arrivée :
-        for (note in startScale.scaleList){
+        for (note in StartScaleFragment.startScale.scaleList){
 
             val initialIndex = AppData.allNotes.indexOf(note)
-            Log.d("Initial Index", initialIndex.toString())
             val endIndex = Math.floorMod((initialIndex + toneVariation), AppData.allNotes.size)
-            Log.d("End Index", endIndex.toString())
 
             newScale.scaleList.add(AppData.allNotes[endIndex])
         }
-        endScale = newScale
-        Log.d("SAME", (startScale == endScale).toString())
-        endScaleTextView.text = endScale.scaleList.toString()
+
+        return newScale
     }
 
-    override fun onNothingSelected(p0: AdapterView<*>?) {}
-
     private fun addTransposition() {
+
         val builder = AlertDialog.Builder(this@TranspositionActivity)
         builder.setTitle("Specify the name of new transposition")
+
+        val endScale = createEndScale()
 
         // L'entrée :
         val inputText = EditText(this@TranspositionActivity)
@@ -112,10 +105,10 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
             if(inputText.text.toString() != "" && AppData.allTranspositions.find { it.transpositionName == inputText.text.toString()} == null){
                 val newTransposition = Transposition(
                     inputText.text.toString(),
-                    startScale.scaleList,
-                    startInstrument,
+                    StartScaleFragment.startScale.scaleList,
+                    StartInstrumentFragment.startInstrument,
                     endScale.scaleList,
-                    endInstrument
+                    EndInstrumentFragment.endInstrument
                 )
 
                 AppData.allTranspositions.add(newTransposition)
@@ -141,6 +134,20 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
             oos.close()
         } catch (error : IOException){
             Log.d("Error write",error.toString())
+        }
+    }
+
+    private fun goToPreviousStep(){
+        if (currentFragmentPos != 0){
+            currentFragmentPos--
+            tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos))
+        }
+    }
+
+    private fun goToNextStep() {
+        if (currentFragmentPos != (fragmentList.size-1)){
+            currentFragmentPos++
+            tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos))
         }
     }
 }

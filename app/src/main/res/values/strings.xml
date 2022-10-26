@@ -8,7 +8,6 @@
     <string name="settings">Settings</string>
     <string name="scale_logo">scale logo</string>
     <string name="scale_name">Scale Name</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="todo_favourites">TODO FAVOURITES</string>
     <string name="values">Values :</string>
@@ -16,15 +15,21 @@
     <string name="start_scale">Start Scale</string>
     <string name="back_button">back button</string>
     <string name="scale">Scale :</string>
-    <string name="instrument">Instrument :</string>
+    <string name="instrument">Instrument</string>
     <string name="end_instrument">End Instrument</string>
     <string name="end_scale">End Scale</string>
     <string name="transpositions">Transpositions</string>
-    <string name="send_to_a_contact">SEND TO A CONTACT</string>
+    <string name="send_to_a_contact">Send To A Contact</string>
     <string name="transposition_s_name">Transposition\'s Name</string>
     <string name="delete_transposition">Delete Transposition</string>
     <string name="change_favourite_statue">Change Favourite Statue</string>
     <string name="transposition_has_been_deleted">Transposition has been deleted</string>
     <string name="transposition_removed_from_favourite">Transposition removed from the favourites</string>
     <string name="transposition_added_to_favourite">Transposition added to the favourites</string>
+    <string name="create_transposition">Create Transposition</string>
+    <string name="start_instrument">Start Instrument</string>
+    <string name="choose_a_scale">Choose a Scale</string>
+    <string name="previous_step">previous_step</string>
+    <string name="next_step">next_step</string>
+    <string name="save_transposition">Save Transposition</string>
 </resources>
