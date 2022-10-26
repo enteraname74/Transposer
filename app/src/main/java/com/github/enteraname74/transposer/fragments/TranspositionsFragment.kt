@@ -59,6 +59,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
     override fun onTranspositionClick(position: Int) {
         val intent = Intent(context, SeeTranspositionActivity::class.java)
         intent.putExtra("POSITION", position)
+        intent.putExtra("SOURCE", "Transpositions")
         startActivity(intent)
     }
 

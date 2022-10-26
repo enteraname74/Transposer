@@ -1,9 +1,12 @@
 package com.github.enteraname74.transposer.fragments
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.telephony.SmsManager
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.RecyclerView
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.activities.SeeScaleActivity
@@ -29,6 +33,7 @@ import java.io.ObjectOutputStream
 
 class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
     private lateinit var favouritesRecyclerView: RecyclerView
+    private lateinit var selectedTransposition : Transposition
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,13 +83,54 @@ class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
                 Toast.makeText(context, R.string.transposition_removed_from_favourite, Toast.LENGTH_SHORT).show()
                 true
             }
+            22 -> {
+                // SEND TO A CONTACT :
+                Log.d("SEND TRANSPO","")
+                val getContactIntent = Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
+                selectedTransposition = element
+                resultLauncher.launch(getContactIntent)
+                true
+            }
             else -> super.onContextItemSelected(item)
+        }
+    }
+
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if(result.resultCode == Activity.RESULT_OK){
+            val uri = result.data?.data
+            val cursor = context?.contentResolver?.query(uri as Uri, null, null, null, null)
+
+            if (cursor?.moveToNext() as Boolean){
+                val phoneIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                val num = cursor.getString(phoneIndex)
+                Log.d("RESULT", num.toString())
+
+                try {
+                    // Nous envoyons deux sms, smsManager n'arrive pas à tout envoyer d'une traite :
+                    val smsManager = SmsManager.getDefault()
+
+                    val initialPartitionText = "Instrument de départ : \n" + selectedTransposition.startInstrument.instrumentName + "\n" +
+                            "Partition de départ : \n" + selectedTransposition.startPartition
+
+
+
+                    val finalPartitionText = "Instrument d'arrivée : \n" + selectedTransposition.endInstrument.instrumentName + "\n" +
+                            "Partition d'arrivée : \n" + selectedTransposition.endPartition
+
+                    smsManager?.sendTextMessage(num,null, initialPartitionText,null,null)
+                    smsManager?.sendTextMessage(num,null, finalPartitionText,null,null)
+                    Toast.makeText(context, "The message has been sent",Toast.LENGTH_SHORT).show()
+                } catch (ex : Exception) {
+                    Toast.makeText(context, "The message cannot be sent",Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
     override fun onFavouriteClick(position: Int) {
         val intent = Intent(context, SeeTranspositionActivity::class.java)
         intent.putExtra("POSITION", position)
+        intent.putExtra("SOURCE", "Favourites")
         startActivity(intent)
     }
 }

@@ -67,6 +67,9 @@ class TranspositionActivity : AppCompatActivity() {
 
         val nextStep = findViewById<ImageView>(R.id.next_step)
         nextStep.setOnClickListener { goToNextStep() }
+
+        val exitButton = findViewById<ImageView>(R.id.back_button)
+        exitButton.setOnClickListener { finish() }
     }
 
 

@@ -38,6 +38,7 @@ class FavouriteList(
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
             menu?.add(adapterPosition, 20, 0, itemView.resources.getString(R.string.delete_transposition))
             menu?.add(adapterPosition, 21, 0, itemView.resources.getString(R.string.change_favourite_statue))
+            menu?.add(adapterPosition, 22, 0, itemView.resources.getString(R.string.send_to_a_contact))
         }
     }
 
