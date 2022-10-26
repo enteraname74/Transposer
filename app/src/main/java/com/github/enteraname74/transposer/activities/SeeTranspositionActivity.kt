@@ -18,9 +18,13 @@ class SeeTranspositionActivity : AppCompatActivity() {
         val source = intent.getSerializableExtra("SOURCE") as String
 
         val transpositionName = findViewById<TextView>(R.id.transposition_name)
-        val valuesField = findViewById<TextView>(R.id.values)
 
-        // En foncti
+        val startPartitionField = findViewById<TextView>(R.id.start_partition)
+        val startInstrumentField = findViewById<TextView>(R.id.start_instrument)
+        val endPartitionField = findViewById<TextView>(R.id.end_partition)
+        val endInstrumentField = findViewById<TextView>(R.id.end_instrument)
+
+        // En fonction de la liste actuelle, on définit où on va chercher notre partition :
         val currentList = if(source == "Favourites"){
             AppData.favouritesList
         } else {
@@ -28,7 +32,10 @@ class SeeTranspositionActivity : AppCompatActivity() {
         }
 
         transpositionName.text = currentList[position].transpositionName
-        valuesField.text = currentList[position].endPartition.toString()
+        startPartitionField.text = currentList[position].startPartition.toString()
+        startInstrumentField.text = currentList[position].startInstrument.instrumentName
+        endPartitionField.text = currentList[position].endPartition.toString()
+        endInstrumentField.text = currentList[position].endInstrument.instrumentName
 
         val backButton = findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener { finish() }

@@ -26,7 +26,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="15"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -40,17 +40,63 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/values"/>
+                android:text="Initial Instrument :"/>
 
             <TextView
-                android:id="@+id/values"
+                android:id="@+id/start_instrument"
+                android:text="@string/values_to_replace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/initial_partition"/>
+
+            <TextView
+                android:id="@+id/start_partition"
+                android:text="@string/values_to_replace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/final_instrument"/>
+
+            <TextView
+                android:id="@+id/end_instrument"
+                android:text="@string/values_to_replace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/final_partition"/>
+
+            <TextView
+                android:id="@+id/end_partition"
                 android:text="@string/values_to_replace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

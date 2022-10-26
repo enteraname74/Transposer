@@ -33,4 +33,7 @@
     <string name="previous_step">previous_step</string>
     <string name="next_step">next_step</string>
     <string name="save_transposition">Save Transposition</string>
+    <string name="initial_partition">Initial Partition :</string>
+    <string name="final_partition">Final Partition :</string>
+    <string name="final_instrument">Final Instrument :</string>
 </resources>
