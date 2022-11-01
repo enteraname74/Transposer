@@ -38,23 +38,8 @@ class EndScaleFragment : Fragment() {
         // Le changement de position courante se fait quand on change de fragment (à la main, ou en utilisant les boutons)
         (activity as TranspositionActivity).currentFragmentPos = 3
 
-        val toneVariation = EndInstrumentFragment.endInstrument.tone - StartInstrumentFragment.startInstrument.tone
-
-        // On initialise notre gamme d'arrivée :
-        endScale = Scale(
-            StartScaleFragment.startScale.scaleName,
-            ArrayList<String>()
-        )
-
-        // Pour chaque note de la gamme de départ, on trouve son équivalent dans la gamme d'arrivée :
-        for (note in StartScaleFragment.startScale.scaleList){
-
-            val initialIndex = AppData.allNotes.indexOf(note)
-            val endIndex = Math.floorMod((initialIndex + toneVariation), AppData.allNotes.size)
-
-            endScale.scaleList.add(AppData.allNotes[endIndex])
-            endScaleTextView.text = endScale.scaleList.toString()
-        }
+        endScale = (activity as TranspositionActivity).createEndScale()
+        endScaleTextView.text = endScale.scaleList.toString()
     }
 
     companion object {
