@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import com.github.enteraname74.transposer.R
+import com.github.enteraname74.transposer.activities.TranspositionActivity
 import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.MusicInstrument
 
@@ -35,6 +36,12 @@ class EndInstrumentFragment : Fragment(), AdapterView.OnItemSelectedListener {
         endInstrumentSpinner.onItemSelectedListener = this
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Le changement de position courante se fait quand on change de fragment (à la main, ou en utilisant les boutons)
+        (activity as TranspositionActivity).currentFragmentPos = 2
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

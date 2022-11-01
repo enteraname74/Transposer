@@ -39,7 +39,7 @@ class TranspositionActivity : AppCompatActivity() {
         EndInstrumentFragment(),
         EndScaleFragment()
     ))
-    private var currentFragmentPos = 0
+    var currentFragmentPos = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,16 +141,16 @@ class TranspositionActivity : AppCompatActivity() {
     }
 
     private fun goToPreviousStep(){
+        Log.d("CURRENT", currentFragmentPos.toString())
         if (currentFragmentPos != 0){
-            currentFragmentPos--
-            tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos))
+            tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos-1))
         }
     }
 
     private fun goToNextStep() {
+        Log.d("CURRENT", currentFragmentPos.toString())
         if (currentFragmentPos != (fragmentList.size-1)){
-            currentFragmentPos++
-            tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos))
+            tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos+1))
         }
     }
 }

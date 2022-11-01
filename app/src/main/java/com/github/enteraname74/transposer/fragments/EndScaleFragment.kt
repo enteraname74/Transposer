@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.github.enteraname74.transposer.R
+import com.github.enteraname74.transposer.activities.TranspositionActivity
 import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.Scale
 
@@ -34,6 +35,8 @@ class EndScaleFragment : Fragment() {
     override fun onResume() {
         // Dès que l'on revient sur ce fragment, on met à jour la vue :
         super.onResume()
+        // Le changement de position courante se fait quand on change de fragment (à la main, ou en utilisant les boutons)
+        (activity as TranspositionActivity).currentFragmentPos = 3
 
         val toneVariation = EndInstrumentFragment.endInstrument.tone - StartInstrumentFragment.startInstrument.tone
 
