@@ -16,6 +16,7 @@ import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.Scale
 
 class StartScaleFragment : Fragment(), AdapterView.OnItemSelectedListener {
+    private var createFragmentState = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,11 @@ class StartScaleFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         startScale = AppData.scalesList.find{ it.scaleName == parent?.getItemAtPosition(position)} as Scale
+        // onItemSelected est appelé lorsqu'on crée le fragment. Il ne faut pas passer au prochain fragment dans ce cas la.
+        if (!createFragmentState) {
+            (activity as TranspositionActivity).goToNextStep()
+        }
+        createFragmentState = false
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {}

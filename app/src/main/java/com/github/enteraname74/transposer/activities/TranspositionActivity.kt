@@ -147,7 +147,7 @@ class TranspositionActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToNextStep() {
+    fun goToNextStep() {
         Log.d("CURRENT", currentFragmentPos.toString())
         if (currentFragmentPos != (fragmentList.size-1)){
             tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos+1))

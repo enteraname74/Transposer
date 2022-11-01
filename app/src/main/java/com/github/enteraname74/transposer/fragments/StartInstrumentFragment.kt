@@ -17,6 +17,7 @@ import com.github.enteraname74.transposer.classes.MusicInstrument
 import com.github.enteraname74.transposer.classes.Scale
 
 class StartInstrumentFragment : Fragment(), AdapterView.OnItemSelectedListener {
+    private var createFragmentState = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,11 @@ class StartInstrumentFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         startInstrument = AppData.instruments.find { it.instrumentName == parent?.getItemAtPosition(position) } as MusicInstrument
+        // onItemSelected est appelé lorsqu'on crée le fragment. Il ne faut pas passer au prochain fragment dans ce cas la.
+        if (!createFragmentState) {
+            (activity as TranspositionActivity).goToNextStep()
+        }
+        createFragmentState = false
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {}
