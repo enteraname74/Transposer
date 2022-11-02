@@ -7,7 +7,7 @@
     tools:context=".activities.TranspositionActivity"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:paddingStart="10dp"
@@ -22,172 +22,91 @@
             android:paddingLeft="10dp"
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/white" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/create_transposition"
+            android:layout_centerHorizontal="true"
             android:textSize="20sp"
-            android:text="@string/start_scale"
-            android:gravity="center"/>
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/primary_color"
+        app:tabMode="fixed"
+        app:tabIndicatorGravity="bottom"
+        app:tabTextColor="@color/white"
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorHeight="4dp"
+        app:tabIndicatorColor="@color/white"
+        android:visibility="gone">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:text="@string/start_scale" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/scale"/>
-
-                <Spinner
-                    android:id="@+id/scale_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/instrument"/>
-                <Spinner
-                    android:id="@+id/instrument_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="@string/end_instrument"
-            android:gravity="center"/>
+            android:text="@string/start_instrument"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@string/end_instrument" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_scale" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+    </com.google.android.material.tabs.TabLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/instrument"/>
-
-                <Spinner
-                    android:id="@+id/end_instrument_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_width="match_parent"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/end_scale"
-            android:gravity="center_horizontal"
-            android:textSize="20sp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/values"/>
-
-            <TextView
-                android:id="@+id/end_scale_values"
-                android:text="@string/values_to_replace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:background="@color/primary_color">
+
+        <ImageView
+            android:id="@+id/previous_step"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/previous_step"
+            android:src="@drawable/ic_west_arrow"
+            app:tint="@color/white" />
 
         <Button
             android:id="@+id/save_transposition_button"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save Transposition"
-            android:backgroundTint="@color/secondary_color"/>
-    </LinearLayout>
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/secondary_color"
+            android:text="@string/save_transposition" />
+
+        <ImageView
+            android:contentDescription="@string/next_step"
+            android:id="@+id/next_step"
+            android:layout_alignParentEnd="true"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_east_arrow"
+            app:tint="@color/white" />
+    </RelativeLayout>
+
 </LinearLayout>

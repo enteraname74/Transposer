@@ -7,6 +7,7 @@
     tools:context=".fragments.FavouritesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:backgroundTint="@color/third_color"
         android:id="@+id/favourites_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

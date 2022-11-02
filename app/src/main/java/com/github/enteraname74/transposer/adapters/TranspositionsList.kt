@@ -39,6 +39,7 @@ class TranspositionsList(
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
             menu?.add(adapterPosition, 10, 0, itemView.resources.getString(R.string.delete_transposition))
             menu?.add(adapterPosition, 11, 0, itemView.resources.getString(R.string.change_favourite_statue))
+            menu?.add(adapterPosition, 12, 0, itemView.resources.getString(R.string.send_to_a_contact))
         }
     }
 

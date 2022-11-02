@@ -7,7 +7,7 @@
     tools:context=".activities.TranspositionActivity"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:paddingStart="10dp"
@@ -21,15 +21,8 @@
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/white" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:orientation="vertical">
-
         <TextView
+            android:layout_margin="10dp"
             android:id="@+id/transposition_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,22 +31,118 @@
             android:textStyle="bold"
             android:gravity="center"/>
 
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@color/third_color">
+
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
+                android:padding="20dp"
                 android:layout_height="wrap_content"
-                android:text="@string/values"/>
+                android:background="@drawable/right_corners_round"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/values"
-                android:text="@string/values_to_replace"
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/initial_instrument"/>
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/start_instrument"
+                    android:text="@string/values_to_replace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/initial_partition"/>
+
+                <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:id="@+id/start_partition"
+                    android:layout_gravity="center"
+                    android:text="@string/values_to_replace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:padding="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/right_corners_round"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/final_instrument"/>
+
+                <TextView
+                    android:id="@+id/end_instrument"
+                    android:textSize="16sp"
+                    android:text="@string/values_to_replace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/final_partition"/>
+
+                <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:id="@+id/end_partition"
+                    android:text="@string/values_to_replace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

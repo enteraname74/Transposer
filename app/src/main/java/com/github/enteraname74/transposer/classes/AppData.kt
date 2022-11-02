@@ -12,7 +12,7 @@ class AppData {
     companion object {
         val allTranspositionFile = "allTranspositions.transpose"
 
-        val allNotes = ArrayList<String>(listOf(
+        val allNotesDiese = ArrayList<String>(listOf(
             "DO",
             "DO#",
             "RE",
@@ -27,23 +27,54 @@ class AppData {
             "SI"
         ))
 
+        val allNotesBemol = ArrayList<String>(listOf(
+            "DO♭",
+            "DO",
+            "RE♭",
+            "RE",
+            "MI♭",
+            "MI",
+            "FA",
+            "SOL♭",
+            "SOL",
+            "LA♭",
+            "LA",
+            "SI♭",
+            "SI"
+        ))
+
         val instruments = ArrayList<MusicInstrument>(listOf(
             MusicInstrument("Piano", 0),
             MusicInstrument("Saxophone Alto", 3),
+            MusicInstrument("Guitare Acoustique", 4),
             MusicInstrument("Saxophone Tenor", 10)
         ))
 
         val scalesList = ArrayList<Scale>(listOf(
             Scale("DO Majeur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI","DO"))),
-            Scale("La Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI","DO"))),
-            Scale("FA Majeur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA#","SI","DO"))),
-            Scale("RE Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA#","SI","DO"))),
-            Scale("SI♭ Majeur", ArrayList(listOf("DO","RE#","MI","FA","SOL","LA#","SI","DO"))),
-            Scale("SOL Mineur", ArrayList(listOf("DO","RE#","MI","FA","SOL","LA#","SI","DO"))),
-            Scale("MIB Majeur", ArrayList(listOf("DO","RE#","MI","FA","SOL#","LA#","SI","DO"))),
-            Scale("DO Mineur", ArrayList(listOf("DO","RE#","MI","FA","SOL#","LA#","SI","DO"))),
-            Scale("LA♭ Majeur", ArrayList(listOf("DO#","RE#","MI","FA","SOL#","LA#","SI","DO#"))),
-            Scale("FA Majeur", ArrayList(listOf("DO#","RE#","MI","FA","SOL#","LA#","SI","DO#"))))
+            Scale("LA Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI","DO"))),
+            Scale("FA Majeur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI♭","DO"))),
+            Scale("RE Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI♭","DO"))),
+            Scale("SI♭ Majeur", ArrayList(listOf("DO","RE","MI♭","FA","SOL","LA","SI♭","DO"))),
+            Scale("SOL Mineur", ArrayList(listOf("DO","RE","MI♭","FA","SOL","LA","SI","DO"))),
+            Scale("MI♭ Majeur", ArrayList(listOf("DO","RE","MI♭","FA","SOL","LA♭","SI♭","DO"))),
+            Scale("DO Mineur", ArrayList(listOf("DO","RE","MI♭","FA","SOL","LA♭","SI♭","DO"))),
+            Scale("LA♭ Majeur", ArrayList(listOf("DO","RE♭","MI♭","FA","SOL","LA♭","SI♭","DO"))),
+            Scale("FA Mineur", ArrayList(listOf("DO","RE♭","MI♭","FA","SOL","LA♭","SI♭","DO"))),
+            Scale("RE♭ Majeur", ArrayList(listOf("DO","RE♭","MI♭","FA","SOL♭","LA♭","SI♭","DO"))),
+            Scale("SI♭ Mineur", ArrayList(listOf("DO","RE♭","MI♭","FA","SOL♭","LA♭","SI♭","DO"))),
+            Scale("FA# Majeur", ArrayList(listOf("DO#","RE#","MI#","FA#","SOL#","LA#","SI","DO#"))),
+            Scale("RE# Mineur", ArrayList(listOf("DO#","RE#","MI#","FA#","SOL#","LA#","SI","DO#"))),
+            Scale("SI Majeur", ArrayList(listOf("DO#","RE#","MI","FA#","SOL#","LA#","SI","DO#"))),
+            Scale("SOL# Mineur", ArrayList(listOf("DO#","RE#","MI","FA#","SOL#","LA#","SI","DO#"))),
+            Scale("MI Majeur", ArrayList(listOf("DO#","RE#","MI","FA#","SOL#","LA","SI","DO#"))),
+            Scale("DO# Mineur", ArrayList(listOf("DO#","RE#","MI","FA#","SOL#","LA","SI","DO#"))),
+            Scale("LA Majeur", ArrayList(listOf("DO#","RE","MI","FA#","SOL#","LA","SI","DO#"))),
+            Scale("FA# Mineur", ArrayList(listOf("DO#","RE","MI","FA#","SOL#","LA","SI","DO#"))),
+            Scale("RE Majeur", ArrayList(listOf("DO#","RE","MI","FA#","SOL","LA","SI","DO#"))),
+            Scale("SI Mineur", ArrayList(listOf("DO#","RE","MI","FA#","SOL","LA","SI","DO#"))),
+            Scale("SOL Majeur", ArrayList(listOf("DO","RE","MI","FA#","SOL","LA","SI","DO"))),
+            Scale("MI Mineur", ArrayList(listOf("DO","RE","MI","FA#","SOL","LA","SI","DO"))))
         )
 
         var allTranspositions = ArrayList<Transposition>()

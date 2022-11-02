@@ -18,8 +18,13 @@ class SeeScaleActivity : AppCompatActivity() {
         val scaleName = findViewById<TextView>(R.id.scale_name)
         val valuesField = findViewById<TextView>(R.id.scale_values)
 
+        var partitionText = ""
+        for (note in AppData.scalesList[position].scaleList){
+            partitionText += " $note "
+        }
+
         scaleName.text = AppData.scalesList[position].scaleName
-        valuesField.text = AppData.scalesList[position].scaleList.toString()
+        valuesField.text = partitionText
 
         val backButton = findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener { finish() }
