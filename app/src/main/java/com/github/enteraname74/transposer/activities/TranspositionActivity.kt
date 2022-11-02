@@ -77,7 +77,7 @@ class TranspositionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
 
         // le décalage de notes :
         val toneVariation = endInstrument.tone - startInstrument.tone
-        Log.d("TONEVARIATION", toneVariation.toString())
+        Log.d("TONE VARIATION", toneVariation.toString())
 
         val newScale = Scale(startScale.scaleName, ArrayList<String>())
 
