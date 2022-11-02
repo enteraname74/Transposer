@@ -84,6 +84,8 @@
                     android:text="@string/initial_partition"/>
 
                 <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:id="@+id/start_partition"
                     android:layout_gravity="center"
                     android:text="@string/values_to_replace"
@@ -134,6 +136,8 @@
                     android:text="@string/final_partition"/>
 
                 <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:id="@+id/end_partition"
                     android:text="@string/values_to_replace"
                     android:layout_width="wrap_content"

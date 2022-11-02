@@ -41,7 +41,13 @@ class EndScaleFragment : Fragment() {
         (activity as TranspositionActivity).currentFragmentPos = 3
 
         endScale = (activity as TranspositionActivity).createEndScale()
-        endScaleTextView.text = endScale.scaleList.toString()
+
+        var partitionText = ""
+        for (note in endScale.scaleList){
+            partitionText += " $note "
+        }
+
+        endScaleTextView.text = partitionText
     }
 
     companion object {

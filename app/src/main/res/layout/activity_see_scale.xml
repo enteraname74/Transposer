@@ -28,7 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/third_color">
 
         <TextView
             android:id="@+id/scale_name"
@@ -46,11 +47,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/values"/>
 
             <TextView
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:id="@+id/scale_values"
                 android:text="@string/values_to_replace"
                 android:layout_width="wrap_content"

@@ -32,9 +32,19 @@ class SeeTranspositionActivity : AppCompatActivity() {
         }
 
         transpositionName.text = currentList[position].transpositionName
-        startPartitionField.text = currentList[position].startPartition.toString()
+
+        var startPartitionText = ""
+        for (note in currentList[position].startPartition){
+            startPartitionText += " $note "
+        }
+        startPartitionField.text = startPartitionText
         startInstrumentField.text = currentList[position].startInstrument.instrumentName
-        endPartitionField.text = currentList[position].endPartition.toString()
+
+        var endPartitionText = ""
+        for (note in currentList[position].endPartition){
+            endPartitionText += " $note "
+        }
+        endPartitionField.text = endPartitionText
         endInstrumentField.text = currentList[position].endInstrument.instrumentName
 
         val backButton = findViewById<ImageView>(R.id.back_button)
