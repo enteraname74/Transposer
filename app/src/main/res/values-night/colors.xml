@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#979797</color>
 
-    <color name="primary_color">#E3AF13</color>
-    <color name="secondary_color">#D0A011</color>
-    <color name="third_color">#F7F0D9</color>
+    <color name="primary_color">#051544</color>
+    <color name="secondary_color">#082066</color>
+    <color name="third_color">#01050F</color>
 </resources>

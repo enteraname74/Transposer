@@ -7,6 +7,7 @@
     tools:context=".fragments.TranspositionsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:backgroundTint="@color/third_color"
         android:id="@+id/transpositions_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

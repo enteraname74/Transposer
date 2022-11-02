@@ -36,4 +36,5 @@
     <string name="initial_partition">Initial Partition :</string>
     <string name="final_partition">Final Partition :</string>
     <string name="final_instrument">Final Instrument :</string>
+    <string name="initial_instrument">Initial Instrument :</string>
 </resources>

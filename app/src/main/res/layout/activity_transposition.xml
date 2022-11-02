@@ -83,11 +83,11 @@
         android:background="@color/primary_color">
 
         <ImageView
-            android:contentDescription="@string/previous_step"
             android:id="@+id/previous_step"
-            android:layout_width="wrap_content"
+            android:layout_width="35dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
+            android:contentDescription="@string/previous_step"
             android:src="@drawable/ic_west_arrow"
             app:tint="@color/white" />
 
@@ -103,7 +103,7 @@
             android:contentDescription="@string/next_step"
             android:id="@+id/next_step"
             android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
+            android:layout_width="35dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_east_arrow"
             app:tint="@color/white" />

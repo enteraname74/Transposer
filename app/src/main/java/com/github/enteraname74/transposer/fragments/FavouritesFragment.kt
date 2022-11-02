@@ -47,7 +47,6 @@ class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
 
         favouritesRecyclerView = view.findViewById(R.id.favourites_recycler_view)
         favouritesRecyclerView.adapter = FavouriteList(context as Context,AppData.favouritesList, this)
-
         return view
     }
 
