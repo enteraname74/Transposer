@@ -46,6 +46,7 @@ class AppData {
         val instruments = ArrayList<MusicInstrument>(listOf(
             MusicInstrument("Piano", 0),
             MusicInstrument("Saxophone Alto", 3),
+            MusicInstrument("Guitare Acoustique", 4),
             MusicInstrument("Saxophone Tenor", 10)
         ))
 

@@ -35,4 +35,6 @@
     <string name="final_partition">Partition final :</string>
     <string name="final_instrument">Instrument final :</string>
     <string name="initial_instrument">Instrument initial :</string>
+    <string name="the_message_has_been_sent">Le message a été envoyé</string>
+    <string name="the_message_cannot_be_sent">Le message n\'a pas pu être envoyé</string>
 </resources>

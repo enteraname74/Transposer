@@ -117,22 +117,33 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
                 Log.d("RESULT", num.toString())
 
                 try {
-                    // Nous envoyons deux sms, smsManager n'arrive pas à tout envoyer d'une traite :
+                    // Nous envoyons 4 sms, smsManager n'arrive pas à tout envoyer d'une traite :
                     val smsManager = SmsManager.getDefault()
 
-                    val initialPartitionText = "Instrument de départ : \n" + selectedTransposition.startInstrument.instrumentName + "\n" +
-                            "Partition de départ : \n" + selectedTransposition.startPartition
+                    var initialPartitionValue = ""
+                    for (note in selectedTransposition.startPartition){
+                        initialPartitionValue += "$note "
+                    }
+
+                    val initialInstrumentText = getString(R.string.initial_instrument) + "\n" + selectedTransposition.startInstrument.instrumentName
+                    val initialPartitionText = getString(R.string.initial_partition)+ "\n" + initialPartitionValue
+
+                    var endPartitionValue = ""
+                    for (note in selectedTransposition.endPartition){
+                        endPartitionValue += "$note "
+                    }
+
+                    val endInstrumentText = getString(R.string.final_instrument) + "\n" + selectedTransposition.endInstrument.instrumentName
+                    val endPartitionText = getString(R.string.final_partition)+ "\n" + endPartitionValue
 
 
-
-                    val finalPartitionText = "Instrument d'arrivée : \n" + selectedTransposition.endInstrument.instrumentName + "\n" +
-                            "Partition d'arrivée : \n" + selectedTransposition.endPartition
-
+                    smsManager?.sendTextMessage(num,null, initialInstrumentText,null,null)
                     smsManager?.sendTextMessage(num,null, initialPartitionText,null,null)
-                    smsManager?.sendTextMessage(num,null, finalPartitionText,null,null)
-                    Toast.makeText(context, "The message has been sent",Toast.LENGTH_SHORT).show()
+                    smsManager?.sendTextMessage(num,null, endInstrumentText,null,null)
+                    smsManager?.sendTextMessage(num,null, endPartitionText,null,null)
+                    Toast.makeText(context, R.string.the_message_has_been_sent,Toast.LENGTH_SHORT).show()
                 } catch (ex : Exception) {
-                    Toast.makeText(context, "The message cannot be sent",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.the_message_cannot_be_sent,Toast.LENGTH_SHORT).show()
                 }
             }
         }

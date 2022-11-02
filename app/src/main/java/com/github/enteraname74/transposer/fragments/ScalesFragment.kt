@@ -69,16 +69,20 @@ class ScalesFragment : Fragment(), ScalesList.OnScaleListener {
             if (cursor?.moveToNext() as Boolean){
                 val phoneIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
                 val num = cursor.getString(phoneIndex)
-                Log.d("RESULT", num.toString())
 
                 try {
                     val smsManager = SmsManager.getDefault()
 
+                    var partitionText = ""
+                    for (note in AppData.scalesList[selectedScale].scaleList){
+                        partitionText += "$note "
+                    }
+
                     smsManager?.sendTextMessage(num,null,
-                        AppData.scalesList[selectedScale].scaleName +  " : \n" + AppData.scalesList[selectedScale].scaleList,null,null)
-                    Toast.makeText(context, "The message has been sent",Toast.LENGTH_SHORT).show()
+                        AppData.scalesList[selectedScale].scaleName +  " : \n" + partitionText,null,null)
+                    Toast.makeText(context, R.string.the_message_has_been_sent,Toast.LENGTH_SHORT).show()
                 } catch (ex : Exception) {
-                    Toast.makeText(context, "The message cannot be sent",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.the_message_cannot_be_sent,Toast.LENGTH_SHORT).show()
                 }
             }
         }
