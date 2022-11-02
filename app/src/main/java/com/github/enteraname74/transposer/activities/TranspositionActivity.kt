@@ -79,13 +79,21 @@ class TranspositionActivity : AppCompatActivity() {
 
         val newScale = Scale(StartScaleFragment.startScale.scaleName, ArrayList<String>())
 
+        // Il faut savoir quelle liste on va utiliser pour décaler les notes (gamme en bémol ou en dièse) :
+        // Si la gamme d départ se situe dans les 11 premières de la liste global, c'est une gamme en bémol :
+        val noteslist = if (AppData.scalesList.indexOf(StartScaleFragment.startScale) < 12){
+            AppData.allNotesBemol
+        } else {
+            AppData.allNotesDiese
+        }
+
         // on va chercher ensuite, pour chaque note initial, sa note d'arrivée :
         for (note in StartScaleFragment.startScale.scaleList){
 
-            val initialIndex = AppData.allNotes.indexOf(note)
-            val endIndex = Math.floorMod((initialIndex + toneVariation), AppData.allNotes.size)
+            val initialIndex = noteslist.indexOf(note)
+            val endIndex = Math.floorMod((initialIndex + toneVariation), noteslist.size)
 
-            newScale.scaleList.add(AppData.allNotes[endIndex])
+            newScale.scaleList.add(noteslist[endIndex])
         }
 
         return newScale
