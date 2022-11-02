@@ -53,6 +53,7 @@ class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
 
     override fun onResume() {
         super.onResume()
+        Log.d("TOT", AppData.favouritesList.size.toString())
         favouritesRecyclerView.adapter?.notifyDataSetChanged()
     }
 
