@@ -46,7 +46,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
         val view = inflater.inflate(R.layout.fragment_transpositions, container, false)
 
         transpositionRecyclerView = view.findViewById(R.id.transpositions_recycler_view)
-        transpositionRecyclerView.adapter = TranspositionsList(context as Context,AppData.allTranspositions, this)
+        transpositionRecyclerView.adapter = TranspositionsList(context as Context,AppData.allTranspositions, this, "Local")
 
         return view
     }
