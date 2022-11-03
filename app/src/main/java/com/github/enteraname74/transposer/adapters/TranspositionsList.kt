@@ -14,7 +14,7 @@ class TranspositionsList(
     private val context: Context,
     var list: ArrayList<Transposition>,
     private val transpositionListener: OnTranspositionListener,
-    var source: String
+    var source: String = "Local"
 ) : RecyclerView.Adapter<TranspositionsList.TranspositionViewHolder>(), Serializable {
 
     class TranspositionViewHolder(
