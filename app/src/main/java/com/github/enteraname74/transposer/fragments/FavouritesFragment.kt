@@ -110,7 +110,6 @@ class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
                     Log.d("RESULT", num.toString())
 
                     try {
-                        // Nous envoyons 4 sms, smsManager n'arrive pas à tout envoyer d'une traite :
                         val smsManager = SmsManager.getDefault()
 
                         var initialPartitionValue = ""
@@ -119,9 +118,9 @@ class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
                         }
 
                         val initialInstrumentText =
-                            getString(R.string.initial_instrument) + "\n" + selectedTransposition.startInstrument.instrumentName
+                            getString(R.string.initial_instrument) + "\n" + selectedTransposition.startInstrument.instrumentName + "\n\n"
                         val initialPartitionText =
-                            getString(R.string.initial_partition) + "\n" + initialPartitionValue
+                            getString(R.string.initial_partition) + "\n" + initialPartitionValue + "\n\n"
 
                         var endPartitionValue = ""
                         for (note in selectedTransposition.endPartition) {
@@ -129,15 +128,16 @@ class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
                         }
 
                         val endInstrumentText =
-                            getString(R.string.final_instrument) + "\n" + selectedTransposition.endInstrument.instrumentName
+                            getString(R.string.final_instrument) + "\n" + selectedTransposition.endInstrument.instrumentName + "\n\n"
                         val endPartitionText =
                             getString(R.string.final_partition) + "\n" + endPartitionValue
 
+                        // On divise le message au cas où celui-ci serait trop long.
+                        val parts: ArrayList<String> =
+                            smsManager.divideMessage(initialInstrumentText + initialPartitionText + endInstrumentText + endPartitionText)
 
-                        smsManager?.sendTextMessage(num, null, initialInstrumentText, null, null)
-                        smsManager?.sendTextMessage(num, null, initialPartitionText, null, null)
-                        smsManager?.sendTextMessage(num, null, endInstrumentText, null, null)
-                        smsManager?.sendTextMessage(num, null, endPartitionText, null, null)
+                        smsManager.sendMultipartTextMessage(num, null, parts, null, null)
+
                         Toast.makeText(
                             context,
                             R.string.the_message_has_been_sent,
