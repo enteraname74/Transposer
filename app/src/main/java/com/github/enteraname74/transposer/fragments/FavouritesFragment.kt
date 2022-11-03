@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.activities.SeeTranspositionActivity
-import com.github.enteraname74.transposer.adapters.FavouriteList
+import com.github.enteraname74.transposer.adapters.TranspositionsList
 import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.Transposition
 import kotlinx.coroutines.CoroutineScope
@@ -26,7 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 
-class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
+class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListener {
     private lateinit var favouritesRecyclerView: RecyclerView
     private lateinit var selectedTransposition: Transposition
 
@@ -42,7 +42,7 @@ class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
 
         favouritesRecyclerView = view.findViewById(R.id.favourites_recycler_view)
         favouritesRecyclerView.adapter =
-            FavouriteList(context as Context, AppData.favouritesList, this)
+            TranspositionsList(context as Context, AppData.favouritesList, this, "Favourites")
         return view
     }
 
@@ -154,7 +154,7 @@ class FavouritesFragment : Fragment(), FavouriteList.OnFavouriteListener {
             }
         }
 
-    override fun onFavouriteClick(position: Int) {
+    override fun onTranspositionClick(position: Int) {
         val intent = Intent(context, SeeTranspositionActivity::class.java)
         intent.putExtra("POSITION", position)
         intent.putExtra("SOURCE", "Favourites")

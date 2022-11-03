@@ -51,13 +51,13 @@ class TranspositionsList(
             if (source != "Cloud") {
                 menu?.add(
                     adapterPosition,
-                    10,
+                    if(source != "Favourites") 10 else 20,
                     0,
                     itemView.resources.getString(R.string.delete_transposition)
                 )
                 menu?.add(
                     adapterPosition,
-                    11,
+                    if(source != "Favourites") 11 else 21,
                     0,
                     itemView.resources.getString(R.string.change_favourite_statue)
                 )
