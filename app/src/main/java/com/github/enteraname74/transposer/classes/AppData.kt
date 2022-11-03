@@ -10,6 +10,10 @@ import kotlin.collections.ArrayList
 
 class AppData {
     companion object {
+        const val SHARED_PREF_KEY = "SHARED_PREF"
+        const val USERNAME_KEY = "USERNAME"
+        const val PROFILE_PICTURE_KEY = "PROFILE PICTURE"
+
         val allTranspositionFile = "allTranspositions.transpose"
 
         val allNotesDiese = ArrayList<String>(listOf(

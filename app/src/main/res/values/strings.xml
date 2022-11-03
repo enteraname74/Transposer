@@ -37,4 +37,9 @@
     <string name="initial_instrument">Initial instrument :</string>
     <string name="the_message_has_been_sent">The message has been sent</string>
     <string name="the_message_cannot_be_sent">The message cannot be sent</string>
+    <string name="profile_picture">profile picture</string>
+    <string name="username">username</string>
+    <string name="enter_a_username">enter a username</string>
+    <string name="save">Save</string>
+    <string name="changes_applied_successfully">Changes applied successfully !</string>
 </resources>

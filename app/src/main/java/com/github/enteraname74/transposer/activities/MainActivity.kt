@@ -1,17 +1,23 @@
 package com.github.enteraname74.transposer.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.github.enteraname74.transposer.R
@@ -25,12 +31,16 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.io.ObjectInputStream
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit var navigationView: NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val openMenu = findViewById<ImageView>(R.id.menu_image)
-        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
+        navigationView = findViewById(R.id.navigation_view)
         navigationView.setNavigationItemSelectedListener(this)
 
         openMenu.setOnClickListener { openNavigationMenu(drawerLayout) }
@@ -68,6 +78,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val createTransposition = findViewById<FloatingActionButton>(R.id.add_transposition_button)
         createTransposition.setOnClickListener { createTransposition() }
+
+        sharedPref = getSharedPreferences(AppData.SHARED_PREF_KEY, Context.MODE_PRIVATE)
     }
 
     override fun onResume() {
@@ -77,6 +89,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         if (!checkPermission(android.Manifest.permission.SEND_SMS)) {
             requestPermission(android.Manifest.permission.SEND_SMS)
+        }
+
+        // Mettons à jour les informations de l'utilisateur :
+        Log.d("SIZE", sharedPref.all.size.toString())
+        if (sharedPref.contains(AppData.USERNAME_KEY)){
+            val usernameField = navigationView.getHeaderView(0).findViewById<TextView>(R.id.username)
+            Log.d("HERE", usernameField.text.toString())
+            usernameField.text = sharedPref.getString(AppData.USERNAME_KEY, "")
+        }
+
+        if (sharedPref.contains(AppData.PROFILE_PICTURE_KEY)){
+            val profilePicture = navigationView.getHeaderView(0).findViewById<ImageView>(R.id.profile_picture)
+            val encodedImage = sharedPref.getString(AppData.PROFILE_PICTURE_KEY,"")
+            val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
+            val bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+            profilePicture.setImageBitmap(bitmapImage)
         }
     }
 
@@ -95,7 +124,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return true
+
+        return when(item.itemId) {
+            R.id.settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> true
+        }
     }
 
     private fun readAllTranspositions(){

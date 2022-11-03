@@ -21,7 +21,8 @@
             <ImageView
                 android:id="@+id/menu_image"
                 android:contentDescription="@string/menu_image"
-                android:layout_margin="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_menu"
@@ -105,6 +106,7 @@
         android:id="@+id/navigation_view"
         app:menu="@menu/navigation_menu"
         android:layout_width="wrap_content"
+        app:headerLayout="@layout/header_nav_bar_layout"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/primary_color">

@@ -37,4 +37,9 @@
     <string name="initial_instrument">Instrument initial :</string>
     <string name="the_message_has_been_sent">Le message a été envoyé</string>
     <string name="the_message_cannot_be_sent">Le message n\'a pas pu être envoyé</string>
+    <string name="profile_picture">photo de profile</string>
+    <string name="username">nom d\'utilisateur</string>
+    <string name="enter_a_username">entrer un nom d\'utilisateur</string>
+    <string name="save">Sauvegarder</string>
+    <string name="changes_applied_successfully">Changements correctement enregistrés !</string>
 </resources>
