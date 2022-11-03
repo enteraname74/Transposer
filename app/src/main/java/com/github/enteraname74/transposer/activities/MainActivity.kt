@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             readAllTranspositions()
             // Une fois nos transpositions récupérées, on initialise la liste des favoris :
             for (transposition in AppData.allTranspositions){
-                if (transposition.isFavourite){
+                if (transposition.isFavourite && AppData.favouritesList.find { it.transpositionName == transposition.transpositionName } == null){
                     AppData.favouritesList.add(transposition)
                 }
             }}
