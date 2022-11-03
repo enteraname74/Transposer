@@ -25,6 +25,7 @@ import com.github.enteraname74.transposer.adapters.VpAdapter
 import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.Transposition
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         if (sharedPref.contains(AppData.PROFILE_PICTURE_KEY)){
-            val profilePicture = navigationView.getHeaderView(0).findViewById<ImageView>(R.id.profile_picture)
+            val profilePicture = navigationView.getHeaderView(0).findViewById<ShapeableImageView>(R.id.profile_picture)
             val encodedImage = sharedPref.getString(AppData.PROFILE_PICTURE_KEY,"")
             val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
             val bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)

@@ -21,6 +21,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
+import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,7 +31,7 @@ import java.time.Duration
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var usernameEditText : EditText
-    private lateinit var profilePicture : ImageView
+    private lateinit var profilePicture : ShapeableImageView
     private var bitmapImage : Bitmap? = null
     private lateinit var sharedPref : SharedPreferences
 
