@@ -11,15 +11,22 @@ import java.io.Serializable
 
 // Classe permettant de représenter une liste de musiques :
 class TranspositionsList(
-    private val context : Context,
-    var list : ArrayList<Transposition>,
-    private val transpositionListener : OnTranspositionListener
+    private val context: Context,
+    var list: ArrayList<Transposition>,
+    private val transpositionListener: OnTranspositionListener,
+    var source: String
 ) : RecyclerView.Adapter<TranspositionsList.TranspositionViewHolder>(), Serializable {
 
-    class TranspositionViewHolder(itemView: View, private var onScaleListener: OnTranspositionListener) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener, View.OnCreateContextMenuListener {
+    class TranspositionViewHolder(
+        itemView: View,
+        private var onScaleListener: OnTranspositionListener,
+        private var source: String
+    ) :
+        RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener,
+        View.OnCreateContextMenuListener {
 
         val scaleName: TextView = itemView.findViewById(R.id.scale_name)
+
         init {
             super.itemView
             itemView.setOnClickListener(this)
@@ -36,10 +43,31 @@ class TranspositionsList(
             return true
         }
 
-        override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-            menu?.add(adapterPosition, 10, 0, itemView.resources.getString(R.string.delete_transposition))
-            menu?.add(adapterPosition, 11, 0, itemView.resources.getString(R.string.change_favourite_statue))
-            menu?.add(adapterPosition, 12, 0, itemView.resources.getString(R.string.send_to_a_contact))
+        override fun onCreateContextMenu(
+            menu: ContextMenu?,
+            v: View?,
+            menuInfo: ContextMenu.ContextMenuInfo?
+        ) {
+            if (source != "Cloud") {
+                menu?.add(
+                    adapterPosition,
+                    10,
+                    0,
+                    itemView.resources.getString(R.string.delete_transposition)
+                )
+                menu?.add(
+                    adapterPosition,
+                    11,
+                    0,
+                    itemView.resources.getString(R.string.change_favourite_statue)
+                )
+            }
+            menu?.add(
+                adapterPosition,
+                12,
+                0,
+                itemView.resources.getString(R.string.send_to_a_contact)
+            )
         }
     }
 
@@ -48,8 +76,9 @@ class TranspositionsList(
             LayoutInflater.from(context).inflate(
                 R.layout.scale_layout,
                 parent,
-                false
-            ), transpositionListener
+                false,
+            ), transpositionListener,
+            source
         )
     }
 

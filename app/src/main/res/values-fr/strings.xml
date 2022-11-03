@@ -31,8 +31,8 @@
     <string name="previous_step">etape_precedente</string>
     <string name="next_step">etape_suivante</string>
     <string name="save_transposition">Sauvegarder Transposition</string>
-    <string name="initial_partition">Partition initial :</string>
-    <string name="final_partition">Partition final :</string>
+    <string name="initial_partition">Partition initiale :</string>
+    <string name="final_partition">Partition finale :</string>
     <string name="final_instrument">Instrument final :</string>
     <string name="initial_instrument">Instrument initial :</string>
     <string name="the_message_has_been_sent">Le message a été envoyé</string>

@@ -27,7 +27,10 @@ class SeeTranspositionActivity : AppCompatActivity() {
         // En fonction de la liste actuelle, on définit où on va chercher notre partition :
         val currentList = if(source == "Favourites"){
             AppData.favouritesList
-        } else {
+        } else if (source == "Cloud"){
+            AppData.cloudTransposition
+        }
+        else {
             AppData.allTranspositions
         }
 

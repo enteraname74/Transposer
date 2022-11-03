@@ -46,7 +46,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
         val view = inflater.inflate(R.layout.fragment_transpositions, container, false)
 
         transpositionRecyclerView = view.findViewById(R.id.transpositions_recycler_view)
-        transpositionRecyclerView.adapter = TranspositionsList(context as Context,AppData.allTranspositions, this)
+        transpositionRecyclerView.adapter = TranspositionsList(context as Context,AppData.allTranspositions, this, "Local")
 
         return view
     }
@@ -117,7 +117,6 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
                 Log.d("RESULT", num.toString())
 
                 try {
-                    // Nous envoyons 4 sms, smsManager n'arrive pas à tout envoyer d'une traite :
                     val smsManager = SmsManager.getDefault()
 
                     var initialPartitionValue = ""
@@ -125,22 +124,23 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
                         initialPartitionValue += "$note "
                     }
 
-                    val initialInstrumentText = getString(R.string.initial_instrument) + "\n" + selectedTransposition.startInstrument.instrumentName
-                    val initialPartitionText = getString(R.string.initial_partition)+ "\n" + initialPartitionValue
+                    val initialInstrumentText = getString(R.string.initial_instrument) + "\n" + selectedTransposition.startInstrument.instrumentName + "\n\n"
+                    val initialPartitionText = getString(R.string.initial_partition)+ "\n" + initialPartitionValue + "\n\n"
 
                     var endPartitionValue = ""
                     for (note in selectedTransposition.endPartition){
                         endPartitionValue += "$note "
                     }
 
-                    val endInstrumentText = getString(R.string.final_instrument) + "\n" + selectedTransposition.endInstrument.instrumentName
+                    val endInstrumentText = getString(R.string.final_instrument) + "\n" + selectedTransposition.endInstrument.instrumentName + "\n\n"
                     val endPartitionText = getString(R.string.final_partition)+ "\n" + endPartitionValue
 
+                    // On divise le message au cas où celui-ci serait trop long.
+                    val parts: ArrayList<String> =
+                        smsManager.divideMessage(initialInstrumentText + initialPartitionText + endInstrumentText + endPartitionText)
 
-                    smsManager?.sendTextMessage(num,null, initialInstrumentText,null,null)
-                    smsManager?.sendTextMessage(num,null, initialPartitionText,null,null)
-                    smsManager?.sendTextMessage(num,null, endInstrumentText,null,null)
-                    smsManager?.sendTextMessage(num,null, endPartitionText,null,null)
+                    smsManager.sendMultipartTextMessage(num, null, parts, null, null)
+
                     Toast.makeText(context, R.string.the_message_has_been_sent,Toast.LENGTH_SHORT).show()
                 } catch (ex : Exception) {
                     Toast.makeText(context, R.string.the_message_cannot_be_sent,Toast.LENGTH_SHORT).show()
