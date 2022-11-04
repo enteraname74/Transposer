@@ -16,6 +16,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.activities.SeeTranspositionActivity
 import com.github.enteraname74.transposer.adapters.TranspositionsList
@@ -24,7 +26,9 @@ import com.github.enteraname74.transposer.classes.Transposition
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.io.File
+import java.util.*
 
 class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListener {
     private lateinit var favouritesRecyclerView: RecyclerView
@@ -91,6 +95,56 @@ class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListene
                     Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
                 selectedTransposition = element
                 resultLauncher.launch(getContactIntent)
+                true
+            }
+            23 -> {
+                // SHARE ONLINE
+                val transposition = AppData.allTranspositions[item.groupId]
+                val transpositionJson =
+                    JSONObject("{\"transpositionName\":\"${transposition.transpositionName}\", \"startPartition\":${transposition.startPartition}, \"startInstrument\": \"${transposition.startInstrument.instrumentName}\", \"endPartition\":${transposition.endPartition}, \"endInstrument\":\"${transposition.endInstrument.instrumentName}\"}")
+
+                val url = "https://transposer.skilldary.com/transposer/upload_transposition"
+
+                val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+
+                val newUserUUID = UUID.randomUUID().toString()
+                val userUUID = sharedPref?.getString("user_uuid", newUserUUID)
+
+                // Si l'UUID de l'utilisateur est celui qui vient d'être créé, alors l'utilisateur
+                // n'en avait pas, on doit donc l'enregistrer.
+                if (userUUID == newUserUUID) {
+                    with(sharedPref.edit()) {
+                        putString("user_uuid", newUserUUID)
+                        apply()
+                    }
+                }
+
+                val jsonBody =
+                    JSONObject("{\"user_uuid\":\"${userUUID}\", \"transposition\":${transpositionJson}}");
+
+                val request = JsonObjectRequest(
+                    url,
+                    jsonBody,
+                    {
+                        Toast.makeText(
+                            this.context,
+                            resources.getString(R.string.transposition_shared),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
+                    {
+                        Toast.makeText(
+                            this.context,
+                            resources.getString(R.string.error),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    })
+
+                // On lance la requête.
+                val queue = Volley.newRequestQueue(this.context)
+                queue.add(request)
+                queue.start()
+
                 true
             }
             else -> super.onContextItemSelected(item)

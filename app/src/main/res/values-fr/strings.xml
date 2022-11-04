@@ -42,4 +42,7 @@
     <string name="enter_a_username">entrer un nom d\'utilisateur</string>
     <string name="save">Sauvegarder</string>
     <string name="changes_applied_successfully">Changements correctement enregistrés !</string>
+    <string name="share_online">Partager en ligne</string>
+    <string name="error">Une erreur est survenue</string>
+    <string name="transposition_shared">La transposition a été partagée</string>
 </resources>

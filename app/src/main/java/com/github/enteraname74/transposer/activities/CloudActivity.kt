@@ -91,7 +91,11 @@ class CloudActivity : AppCompatActivity(), TranspositionsList.OnTranspositionLis
         }, { err ->
             // On enlève l'animation de chargement.
             spinner?.visibility = View.GONE
-            Log.d("ERR", err.toString());Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext,
+                resources.getString(R.string.error),
+                Toast.LENGTH_SHORT
+            ).show()
         })
 
         // On lance la requête.

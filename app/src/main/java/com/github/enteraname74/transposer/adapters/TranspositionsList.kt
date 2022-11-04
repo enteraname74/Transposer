@@ -1,11 +1,13 @@
 package com.github.enteraname74.transposer.adapters
 
 import android.content.Context
-import android.view.*
+import android.view.ContextMenu
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.enteraname74.transposer.R
-import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.Transposition
 import java.io.Serializable
 
@@ -51,15 +53,21 @@ class TranspositionsList(
             if (source != "Cloud") {
                 menu?.add(
                     adapterPosition,
-                    if(source != "Favourites") 10 else 20,
+                    if (source != "Favourites") 10 else 20,
                     0,
                     itemView.resources.getString(R.string.delete_transposition)
                 )
                 menu?.add(
                     adapterPosition,
-                    if(source != "Favourites") 11 else 21,
+                    if (source != "Favourites") 11 else 21,
                     0,
                     itemView.resources.getString(R.string.change_favourite_statue)
+                )
+                menu?.add(
+                    adapterPosition,
+                    if (source != "Favourites") 13 else 23,
+                    0,
+                    itemView.resources.getString(R.string.share_online)
                 )
             }
             menu?.add(
