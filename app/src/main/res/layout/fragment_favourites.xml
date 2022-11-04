@@ -11,6 +11,8 @@
         android:id="@+id/favourites_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        android:clipToPadding="false"
         android:background="@color/white"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

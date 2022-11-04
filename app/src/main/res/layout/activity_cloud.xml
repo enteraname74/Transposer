@@ -25,6 +25,18 @@
                 android:paddingLeft="10dp"
                 android:src="@drawable/ic_arrow_back"
                 app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/transposition_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/cloud"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ProgressBar
@@ -38,6 +50,8 @@
             android:id="@+id/scales_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:clipToPadding="false"
             android:background="@color/white"
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
