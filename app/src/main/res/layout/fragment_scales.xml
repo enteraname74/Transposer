@@ -7,13 +7,13 @@
     tools:context=".fragments.ScalesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:backgroundTint="@color/third_color"
         android:id="@+id/scales_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="10dp"
-        android:clipToPadding="false"
         android:background="@color/white"
+        android:backgroundTint="@color/third_color"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp"
         android:visibility="visible"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </FrameLayout>

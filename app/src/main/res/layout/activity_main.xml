@@ -20,11 +20,11 @@
 
             <ImageView
                 android:id="@+id/menu_image"
-                android:contentDescription="@string/menu_image"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/menu_image"
                 android:src="@drawable/ic_menu"
                 app:tint="@color/white" />
         </LinearLayout>
@@ -34,13 +34,13 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/primary_color"
-            app:tabMode="fixed"
-            app:tabIndicatorGravity="bottom"
-            app:tabTextColor="@color/white"
-            app:tabSelectedTextColor="@color/white"
             app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorColor="@color/third_color"
+            app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="4dp"
-            app:tabIndicatorColor="@color/third_color">
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/transpositions"/>
+                android:text="@string/transpositions" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -66,20 +66,19 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent">
-            </androidx.viewpager2.widget.ViewPager2>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/add_transposition_button"
-                android:contentDescription="@string/add_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/primary_color"
+                android:contentDescription="@string/add_button"
                 android:src="@drawable/ic_add"
-                app:tint="@color/white"/>
+                app:backgroundTint="@color/primary_color"
+                app:tint="@color/white" />
         </FrameLayout>
 
         <LinearLayout
@@ -87,28 +86,28 @@
             android:layout_height="wrap_content"
             android:background="@color/primary_color"
             android:paddingStart="20dp"
-            android:paddingEnd="20dp"
             android:paddingTop="5dp"
+            android:paddingEnd="20dp"
             android:paddingBottom="5dp">
 
             <Button
                 android:id="@+id/cloud_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cloud"
-                android:backgroundTint="@color/secondary_color"/>
+                android:backgroundTint="@color/secondary_color"
+                android:text="@string/cloud" />
 
         </LinearLayout>
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
-        app:menu="@menu/navigation_menu"
         android:layout_width="wrap_content"
-        app:headerLayout="@layout/header_nav_bar_layout"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/primary_color">
+        android:background="@color/primary_color"
+        app:headerLayout="@layout/header_nav_bar_layout"
+        app:menu="@menu/navigation_menu">
 
     </com.google.android.material.navigation.NavigationView>
 

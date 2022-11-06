@@ -9,15 +9,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/third_color">
+        android:background="@color/third_color"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@color/primary_color"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:background="@color/primary_color">
+            android:paddingEnd="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,29 +31,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:gravity="center">
 
             <ImageView
                 android:layout_width="320dp"
                 android:layout_height="320dp"
-                android:src="@drawable/ic_listenning_peacefully"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:src="@drawable/ic_listenning_peacefully" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/top_corners_round"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:background="@drawable/top_corners_round">
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="@string/end_instrument"
-                android:textSize="18sp"
-                android:layout_gravity="center"/>
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/end_instrument_spinner"
