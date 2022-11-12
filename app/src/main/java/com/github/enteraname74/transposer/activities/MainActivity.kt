@@ -32,6 +32,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.w3c.dom.Text
 import java.io.File
 import java.io.FileInputStream
@@ -107,7 +108,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
                 val bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 
-                profilePicture.setImageBitmap(bitmapImage)
+                withContext(Dispatchers.Main){
+                    profilePicture.setImageBitmap(bitmapImage)
+                }
             }
         }
     }
