@@ -32,7 +32,6 @@ class AppData {
         ))
 
         val allNotesBemol = ArrayList<String>(listOf(
-            "DO♭",
             "DO",
             "RE♭",
             "RE",
@@ -48,10 +47,11 @@ class AppData {
         ))
 
         val instruments = ArrayList<MusicInstrument>(listOf(
+            MusicInstrument("Alto Saxophone", 3),
+            MusicInstrument("Guitar", 4),
             MusicInstrument("Piano", 0),
-            MusicInstrument("Saxophone Alto", 3),
-            MusicInstrument("Guitare Acoustique", 4),
-            MusicInstrument("Saxophone Tenor", 10)
+            MusicInstrument("Tenor Saxophone", 10),
+            MusicInstrument("Trumpet", 10)
         ))
 
         val scalesList = ArrayList<Scale>(listOf(
