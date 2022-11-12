@@ -18,7 +18,8 @@
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/white" />
 
@@ -69,7 +70,8 @@
                     android:id="@+id/start_instrument"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="0dp"
                     android:text="@string/values_to_replace"
                     android:textSize="16sp" />
 
@@ -124,7 +126,8 @@
                     android:id="@+id/end_instrument"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="0dp"
                     android:text="@string/values_to_replace"
                     android:textSize="16sp" />
 

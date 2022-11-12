@@ -15,11 +15,12 @@
         android:background="@color/primary_color">
 
         <ImageView
-            android:contentDescription="@string/back_button"
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="10dp"
+            android:contentDescription="@string/back_button"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/white" />
 

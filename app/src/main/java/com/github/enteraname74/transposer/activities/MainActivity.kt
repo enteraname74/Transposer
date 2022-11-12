@@ -94,19 +94,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // Mettons à jour les informations de l'utilisateur :
         Log.d("SIZE", sharedPref.all.size.toString())
-        if (sharedPref.contains(AppData.USERNAME_KEY)){
-            val usernameField = navigationView.getHeaderView(0).findViewById<TextView>(R.id.username)
-            Log.d("HERE", usernameField.text.toString())
-            usernameField.text = sharedPref.getString(AppData.USERNAME_KEY, "")
-        }
+        CoroutineScope(Dispatchers.IO).launch {
+            if (sharedPref.contains(AppData.USERNAME_KEY)){
+                val usernameField = navigationView.getHeaderView(0).findViewById<TextView>(R.id.username)
+                Log.d("HERE", usernameField.text.toString())
+                usernameField.text = sharedPref.getString(AppData.USERNAME_KEY, "")
+            }
 
-        if (sharedPref.contains(AppData.PROFILE_PICTURE_KEY)){
-            val profilePicture = navigationView.getHeaderView(0).findViewById<ShapeableImageView>(R.id.profile_picture)
-            val encodedImage = sharedPref.getString(AppData.PROFILE_PICTURE_KEY,"")
-            val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
-            val bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+            if (sharedPref.contains(AppData.PROFILE_PICTURE_KEY)){
+                val profilePicture = navigationView.getHeaderView(0).findViewById<ShapeableImageView>(R.id.profile_picture)
+                val encodedImage = sharedPref.getString(AppData.PROFILE_PICTURE_KEY,"")
+                val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
+                val bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 
-            profilePicture.setImageBitmap(bitmapImage)
+                profilePicture.setImageBitmap(bitmapImage)
+            }
         }
     }
 
