@@ -38,7 +38,7 @@
             app:tabIndicatorColor="@color/text_color"
             app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="4dp"
-            app:tabMode="fixed"
+            app:tabMode="auto"
             app:tabSelectedTextColor="@color/text_color"
             app:tabTextColor="@color/text_color">
 
