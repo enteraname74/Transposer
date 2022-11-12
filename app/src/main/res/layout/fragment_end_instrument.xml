@@ -20,6 +20,7 @@
             android:paddingEnd="10dp">
 
             <TextView
+                android:textColor="@color/text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -28,27 +29,24 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
             android:layout_margin="10dp"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="320dp"
-                android:layout_height="320dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_listenning_peacefully" />
-        </LinearLayout>
+            android:layout_width="320dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_listenning_peacefully" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@drawable/top_corners_round"
             android:orientation="vertical"
             android:padding="10dp">
 
             <TextView
+                android:textColor="@color/text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

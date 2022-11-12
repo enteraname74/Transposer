@@ -12,4 +12,5 @@
     <color name="primary_color">#051544</color>
     <color name="secondary_color">#082066</color>
     <color name="third_color">#01050F</color>
+    <color name="text_color">#B4B9C7</color>
 </resources>

@@ -7,7 +7,7 @@
     tools:context=".activities.SeeScaleActivity"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:paddingStart="10dp"
@@ -18,48 +18,41 @@
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:contentDescription="@string/back_button"
             android:paddingStart="10dp"
             android:paddingEnd="0dp"
             android:src="@drawable/ic_arrow_back"
-            app:tint="@color/white" />
+            app:tint="@color/text_color" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/scale_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/scale_name"
+            android:textColor="@color/text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
         android:orientation="vertical"
+        android:gravity="center"
         android:background="@color/third_color">
 
         <TextView
-            android:id="@+id/scale_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/scale_name"
+            android:textColor="@color/text_color"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:id="@+id/scale_values"
+            android:text="@string/values_to_replace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/values"/>
-
-            <TextView
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:id="@+id/scale_values"
-                android:text="@string/values_to_replace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

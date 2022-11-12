@@ -26,7 +26,7 @@
                 android:layout_marginTop="5dp"
                 android:contentDescription="@string/menu_image"
                 android:src="@drawable/ic_menu"
-                app:tint="@color/white" />
+                app:tint="@color/text_color" />
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
@@ -35,12 +35,12 @@
             android:layout_height="30dp"
             android:background="@color/primary_color"
             app:tabIndicatorAnimationMode="elastic"
-            app:tabIndicatorColor="@color/third_color"
+            app:tabIndicatorColor="@color/text_color"
             app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="4dp"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/white">
+            app:tabSelectedTextColor="@color/text_color"
+            app:tabTextColor="@color/text_color">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
                 android:contentDescription="@string/add_button"
                 android:src="@drawable/ic_add"
                 app:backgroundTint="@color/primary_color"
-                app:tint="@color/white" />
+                app:tint="@color/text_color" />
         </FrameLayout>
 
         <LinearLayout
@@ -95,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/secondary_color"
+                android:textColor="@color/text_color"
                 android:text="@string/cloud" />
 
         </LinearLayout>
@@ -107,7 +108,9 @@
         android:layout_gravity="start"
         android:background="@color/primary_color"
         app:headerLayout="@layout/header_nav_bar_layout"
-        app:menu="@menu/navigation_menu">
+        app:menu="@menu/navigation_menu"
+        app:itemTextColor="@color/text_color"
+        app:itemIconTint="@color/text_color">
 
     </com.google.android.material.navigation.NavigationView>
 

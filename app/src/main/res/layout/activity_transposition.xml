@@ -22,9 +22,10 @@
             android:paddingStart="10dp"
             android:paddingEnd="0dp"
             android:src="@drawable/ic_arrow_back"
-            app:tint="@color/white" />
+            app:tint="@color/text_color" />
 
         <TextView
+            android:textColor="@color/text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_transposition"
@@ -90,9 +91,10 @@
             android:layout_alignParentStart="true"
             android:contentDescription="@string/previous_step"
             android:src="@drawable/ic_west_arrow"
-            app:tint="@color/white" />
+            app:tint="@color/text_color" />
 
         <Button
+            android:textColor="@color/text_color"
             android:id="@+id/save_transposition_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,7 +109,7 @@
             android:layout_width="35dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_east_arrow"
-            app:tint="@color/white" />
+            app:tint="@color/text_color" />
     </RelativeLayout>
 
 </LinearLayout>

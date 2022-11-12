@@ -21,9 +21,10 @@
             android:paddingStart="10dp"
             android:paddingEnd="0dp"
             android:src="@drawable/ic_arrow_back"
-            app:tint="@color/white" />
+            app:tint="@color/text_color" />
 
         <TextView
+            android:textColor="@color/text_color"
             android:id="@+id/transposition_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,6 +61,7 @@
                 android:padding="20dp">
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/initial_instrument"
@@ -67,6 +69,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:id="@+id/start_instrument"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,6 +87,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -91,6 +95,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:id="@+id/start_partition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -116,6 +121,7 @@
                 android:padding="20dp">
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/final_instrument"
@@ -123,6 +129,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:id="@+id/end_instrument"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -140,12 +147,14 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/final_partition"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:id="@+id/end_partition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
