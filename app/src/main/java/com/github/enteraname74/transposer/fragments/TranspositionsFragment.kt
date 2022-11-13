@@ -81,12 +81,10 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
                 true
             }
             11 -> {
-                // CHANGE FAVOURITE STATUE OF TRANSPOSITION
+                // ADD TO FAVOURITES
                 if (AppData.allTranspositions[item.groupId].isFavourite) {
-                    AppData.allTranspositions[item.groupId].isFavourite = false
-                    AppData.favouritesList.remove(element)
                     Toast.makeText(
-                        context, R.string.transposition_removed_from_favourite, Toast.LENGTH_SHORT
+                        context, R.string.already_in_favourites, Toast.LENGTH_SHORT
                     ).show()
                 } else {
                     AppData.allTranspositions[item.groupId].isFavourite = true
