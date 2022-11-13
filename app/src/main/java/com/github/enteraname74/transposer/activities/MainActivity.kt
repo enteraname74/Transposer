@@ -43,7 +43,8 @@ import java.io.ObjectInputStream
 L'activité MainActivity est l'activité principale de l'application.
 Elle se lance dès le début.
 Vu que c'est une activité, elle hérite d'AppCompatActivity.
-Elle implémente aussi un listener, 
+Elle implémente aussi un listener, NavigationView.OnNavigationItemSelectedListener,
+pour gérer le menu de navigation.
  */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var sharedPref : SharedPreferences
@@ -53,6 +54,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /*
+        On récupère toutes les transpositions de l'utilisateur.
+        Tout se fait en asynchrone pour ne pas bloquer le thread principal.
+        L'utilisation des coroutines permet de simplifier et d'optimiser l'opération.
+        On note l'utilisation d'un Dispatchers.IO pour gérer les opérations d'Input/Output
+        (dans notre cas, lecture de fichier).
+         */
         CoroutineScope(Dispatchers.IO).launch {
             readAllTranspositions()
             // Une fois nos transpositions récupérées, on initialise la liste des favoris :
@@ -64,13 +72,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         findViewById<Button>(R.id.cloud_button).setOnClickListener { toCloudActivity() }
 
+        // Mise en place de notre menu de navigation :
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val openMenu = findViewById<ImageView>(R.id.menu_image)
         navigationView = findViewById(R.id.navigation_view)
         navigationView.setNavigationItemSelectedListener(this)
 
+        // Possibilité d'ouvrir notre menu de navigation via un bouton :
         openMenu.setOnClickListener { openNavigationMenu(drawerLayout) }
 
+        // Mise en place de notre système de tabs et de fragments :
         val viewPager = findViewById<ViewPager2>(R.id.view_pager)
         val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         viewPager.adapter = VpAdapter(this)
@@ -87,11 +98,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val createTransposition = findViewById<FloatingActionButton>(R.id.add_transposition_button)
         createTransposition.setOnClickListener { createTransposition() }
 
+        // Accès à nos shared préférences :
         sharedPref = getSharedPreferences(AppData.SHARED_PREF_KEY, Context.MODE_PRIVATE)
     }
 
     override fun onResume() {
         super.onResume()
+        /*
+        La vérification des permissions se fait dans onResume.
+        En effet, lors d'une demande de permission, l'activité passe dans onResume.
+        Mettre les demandes dans onCreate ne permettrait d'en prendre qu'une seule en compte,
+        on passerai ensuite le reste de onCreate pour se retrouver dans onResume,
+        sans avoir demandé l'accès pour la deuxième permission :
+         */
         if (!checkPermission(android.Manifest.permission.READ_CONTACTS)) {
             requestPermission(android.Manifest.permission.READ_CONTACTS)
         }
