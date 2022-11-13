@@ -22,6 +22,7 @@
             android:src="@drawable/ic_music_note"/>
 
         <TextView
+            android:singleLine="true"
             android:textColor="@color/text_color"
             android:layout_marginStart="10dp"
             android:id="@+id/username"

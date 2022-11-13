@@ -18,6 +18,7 @@
         app:tint="@color/text_color" />
 
     <TextView
+        android:singleLine="true"
         android:textColor="@color/text_color"
         android:id="@+id/scale_name"
         android:layout_marginStart="10dp"

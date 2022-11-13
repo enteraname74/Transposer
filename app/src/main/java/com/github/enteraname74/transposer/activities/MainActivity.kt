@@ -121,7 +121,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             // Si l'utilisateur a fait des modifications, la clé apparait dans les sharedPreferences :
             if (sharedPref.contains(AppData.USERNAME_KEY)){
                 val usernameField = navigationView.getHeaderView(0).findViewById<TextView>(R.id.username)
-                usernameField.text = sharedPref.getString(AppData.USERNAME_KEY, "")
+                withContext(Dispatchers.Main){
+                    usernameField.text = sharedPref.getString(AppData.USERNAME_KEY, "")
+                }
             }
 
             // Si l'utilisateur a fait des modifications, la clé apparait dans les sharedPreferences :
