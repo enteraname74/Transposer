@@ -23,6 +23,7 @@
     <string name="delete_transposition">Supprimer transposition</string>
     <string name="add_to_favourites">Ajouter aux favoris</string>
     <string name="remove_from_favourites">Retirer des favoris</string>
+    <string name="already_in_favourites">Transposition déjà dans les favoris</string>
     <string name="transposition_has_been_deleted">La transposition a été supprimée</string>
     <string name="transposition_removed_from_favourite">La transposition a été supprimée des favoris</string>
     <string name="transposition_added_to_favourite">La transposition a été ajoutée aux favoris</string>
