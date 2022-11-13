@@ -47,4 +47,7 @@
     <string name="transposition_shared">La transposition a été partagée</string>
     <string name="save_locally">Sauvegarder localement</string>
     <string name="saved_locally">Sauvegardé localement</string>
+    <string name="a_title_must_be_set_correctly">Un titre doit être correctement inscrit !</string>
+    <string name="specify_the_name_of_the_new_transposition">Spécifiez le nom de la nouvelle transposition</string>
+    <string name="cancel">Annuler</string>
 </resources>

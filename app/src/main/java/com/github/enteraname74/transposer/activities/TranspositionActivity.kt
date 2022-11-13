@@ -102,7 +102,7 @@ class TranspositionActivity : AppCompatActivity() {
     private fun addTransposition() {
 
         val builder = AlertDialog.Builder(this@TranspositionActivity)
-        builder.setTitle("Specify the name of new transposition")
+        builder.setTitle(getString(R.string.specify_the_name_of_the_new_transposition))
 
         val endScale = createEndScale()
 
@@ -112,7 +112,7 @@ class TranspositionActivity : AppCompatActivity() {
         inputText.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(inputText)
 
-        builder.setPositiveButton("OK") { _, _ ->
+        builder.setPositiveButton(R.string.save) { _, _ ->
             if(inputText.text.toString() != "" && AppData.allTranspositions.find { it.transpositionName == inputText.text.toString()} == null){
                 val newTransposition = Transposition(
                     inputText.text.toString(),
@@ -126,11 +126,11 @@ class TranspositionActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch { writeAllTranspositions() }
                 finish()
             } else {
-                Toast.makeText(applicationContext, "A title must be set correctly !", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, R.string.a_title_must_be_set_correctly, Toast.LENGTH_SHORT).show()
             }
         }
 
-        builder.setNegativeButton("CANCEL") {dialogInterface, _ ->
+        builder.setNegativeButton(R.string.cancel) {dialogInterface, _ ->
             dialogInterface.cancel()
         }
 
