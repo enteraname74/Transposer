@@ -92,4 +92,6 @@ L'utilisation de coroutines permet à notre application d'être rapide en éxéc
 
 Transposer propose un thème clair et un thème sombre s'adaptant en fonction des choix de l'utilisateur sur son téléphone.
 
-<img title="" src="file:///home/noah/Images/Screenshot_2022-11-13-13-32-14-656_com.github.enteraname74.transposer.jpg" alt="" width="318" data-align="center"><img title="" src="file:///home/noah/Images/Screenshot_2022-11-13-13-32-01-677_com.github.enteraname74.transposer.jpg" alt="" width="323" data-align="center">
+<img title="" src="file:///home/noah/Images/Screenshot_2022-11-13-13-32-14-656_com.github.enteraname74.transposer.jpg" alt="" width="318" data-align="center">
+
+<img title="" src="file:///home/noah/Documents/GitHub/Transposer/Screenshots_of_app/Screenshot_2022-11-13-13-32-01-677_com.github.enteraname74.transposer.jpg" alt="" width="320" data-align="center">
