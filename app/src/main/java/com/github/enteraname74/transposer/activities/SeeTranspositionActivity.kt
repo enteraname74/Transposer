@@ -2,12 +2,10 @@ package com.github.enteraname74.transposer.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
-import com.github.enteraname74.transposer.classes.Transposition
 
 /*
 Activité permettant de visualiser une transposition.
@@ -34,13 +32,16 @@ class SeeTranspositionActivity : AppCompatActivity() {
         val endInstrumentField = findViewById<TextView>(R.id.end_instrument)
 
         // En fonction de la liste actuelle, on définit où on va chercher notre partition :
-        val currentList = if(source == "Favourites"){
-            AppData.favouritesList
-        } else if (source == "Cloud"){
-            AppData.cloudTransposition
-        }
-        else {
-            AppData.allTranspositions
+        val currentList = when (source) {
+            "Favourites" -> {
+                AppData.favouritesList
+            }
+            "Cloud" -> {
+                AppData.cloudTransposition
+            }
+            else -> {
+                AppData.allTranspositions
+            }
         }
 
         transpositionName.text = currentList[position].transpositionName

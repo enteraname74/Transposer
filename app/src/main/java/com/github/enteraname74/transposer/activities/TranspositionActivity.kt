@@ -5,7 +5,6 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -13,7 +12,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.adapters.CreateTranspositionVpAdapter
 import com.github.enteraname74.transposer.classes.AppData
-import com.github.enteraname74.transposer.classes.MusicInstrument
 import com.github.enteraname74.transposer.classes.Scale
 import com.github.enteraname74.transposer.classes.Transposition
 import com.github.enteraname74.transposer.fragments.EndInstrumentFragment
@@ -30,21 +28,29 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.ObjectOutputStream
 
+/*
+Activité permettant de creer une transposition.
+Vu que c'est une activité, elle hérite d'AppCompatActivity.
+ */
 class TranspositionActivity : AppCompatActivity() {
     private lateinit var tabLayout : TabLayout
 
+    // La liste des fragments représentant chaque étape de la création d'une transposition :
     private val fragmentList = ArrayList<Fragment>(arrayListOf(
         StartScaleFragment(),
         StartInstrumentFragment(),
         EndInstrumentFragment(),
         EndScaleFragment()
     ))
+
+    // Le premier fragment, affiché lorsqu'on lance cette activité, est à la position 0 :
     var currentFragmentPos = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transposition)
 
+        // Mettons en place notre système de tab et de fragments :
         val viewPager = findViewById<ViewPager2>(R.id.view_pager)
         tabLayout = findViewById(R.id.tab_layout)
         viewPager.adapter = CreateTranspositionVpAdapter(this)
@@ -70,9 +76,14 @@ class TranspositionActivity : AppCompatActivity() {
 
         val exitButton = findViewById<ImageView>(R.id.back_button)
         exitButton.setOnClickListener { finish() }
+
+        // On pense à bien initialiser les valeurs de nos fragments :
+        StartScaleFragment.startScale = AppData.scalesList[0]
+        StartInstrumentFragment.startInstrument = AppData.instruments[0]
+        EndInstrumentFragment.endInstrument = AppData.instruments[0]
     }
 
-
+    // Fonction permet de créer une gamme de fin avec toutes les informations de chaque fragment :
     fun createEndScale() : Scale {
         // le décalage de notes :
         val toneVariation = EndInstrumentFragment.endInstrument.tone - StartInstrumentFragment.startInstrument.tone
@@ -99,11 +110,16 @@ class TranspositionActivity : AppCompatActivity() {
         return newScale
     }
 
+    /*
+     Procédure permettant d'enregistre notre transposition.
+     Elle ouvre une fenêtre de dialog pour que l'utilisateur indique le titre de la transposition qu'il vient de créer :
+     */
     private fun addTransposition() {
 
         val builder = AlertDialog.Builder(this@TranspositionActivity)
         builder.setTitle(getString(R.string.specify_the_name_of_the_new_transposition))
 
+        // On créer notre transposition finale :
         val endScale = createEndScale()
 
         // L'entrée :
@@ -137,6 +153,7 @@ class TranspositionActivity : AppCompatActivity() {
         builder.show()
     }
 
+    // Procédure permettant d'enregistrer toute nos partitions dans le fichier correspondant :
     private fun writeAllTranspositions(){
         val path = applicationContext.filesDir
         try {
@@ -148,15 +165,15 @@ class TranspositionActivity : AppCompatActivity() {
         }
     }
 
+    // Procédure permettant de changer manuellement d'étape (de fragment donc) en allant à la précédante :
     private fun goToPreviousStep(){
-        Log.d("CURRENT", currentFragmentPos.toString())
         if (currentFragmentPos != 0){
             tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos-1))
         }
     }
 
+    // Procédure permettant de changer manuellement d'étape (de fragment donc) en allant à la suivante :
     fun goToNextStep() {
-        Log.d("CURRENT", currentFragmentPos.toString())
         if (currentFragmentPos != (fragmentList.size-1)){
             tabLayout.selectTab(tabLayout.getTabAt(currentFragmentPos+1))
         }

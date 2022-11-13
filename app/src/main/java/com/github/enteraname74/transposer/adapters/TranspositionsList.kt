@@ -11,7 +11,7 @@ import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.Transposition
 import java.io.Serializable
 
-// Classe permettant de représenter une liste de musiques :
+// Classe permettant de représenter une liste de transpositions :
 class TranspositionsList(
     private val context: Context,
     var list: ArrayList<Transposition>,
@@ -19,6 +19,10 @@ class TranspositionsList(
     var source: String = "Local"
 ) : RecyclerView.Adapter<TranspositionsList.TranspositionViewHolder>(), Serializable {
 
+    /*
+    Classe permettant de répresenter un élément de notre liste
+    Elle implémente plusieurs éléments pour gérer les cliques, les cliques long ou encore les contextMenu
+     */
     class TranspositionViewHolder(
         itemView: View,
         private var onScaleListener: OnTranspositionListener,

@@ -17,7 +17,6 @@ import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.github.enteraname74.transposer.R
@@ -33,7 +32,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.w3c.dom.Text
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
@@ -123,7 +121,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             // Si l'utilisateur a fait des modifications, la clé apparait dans les sharedPreferences :
             if (sharedPref.contains(AppData.USERNAME_KEY)){
                 val usernameField = navigationView.getHeaderView(0).findViewById<TextView>(R.id.username)
-                Log.d("HERE", usernameField.text.toString())
                 usernameField.text = sharedPref.getString(AppData.USERNAME_KEY, "")
             }
 

@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
-import org.w3c.dom.Text
 
 /*
 Activité permettant de visualiser une gamme.

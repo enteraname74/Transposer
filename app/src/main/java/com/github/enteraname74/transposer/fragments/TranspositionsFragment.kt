@@ -30,6 +30,11 @@ import org.json.JSONObject
 import java.io.File
 import java.util.*
 
+
+/*
+Fragment permettant d'afficher la liste gammes.
+Le fragment hérité de Fragment() et implémente le listener TranspositionsList.OnTranspositionListener.
+ */
 class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionListener {
     private lateinit var transpositionRecyclerView: RecyclerView
     private lateinit var selectedTransposition: Transposition
@@ -38,6 +43,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
         super.onCreate(savedInstanceState)
     }
 
+    // Fonction permettant d'initialiser et de gérer tout ce qui touche à la vue :
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -50,6 +56,10 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
         return view
     }
 
+    /*
+     Quand on revient sur ce fragment, on s'assure de mettre à jour les données
+     au cas où ces dernières ont changé
+     */
     override fun onResume() {
         super.onResume()
         transpositionRecyclerView.adapter?.notifyDataSetChanged()
@@ -62,7 +72,10 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
         startActivity(intent)
     }
 
-    // L'id du champ selectionné doit être différent de tous les autres champs disponibles dans les autres fragments pour éviter d'appeler le onContextItemSelected d'autres fragments :
+    /*
+    L'id du champ selectionné doit être différent de tous les autres champs disponibles dans les autres fragments
+    pour éviter d'appeler le onContextItemSelected d'autres fragments :
+     */
     override fun onContextItemSelected(item: MenuItem): Boolean {
         println(item.itemId.toString())
         val globalIndex = AppData.allTranspositions.indexOf(AppData.allTranspositions[item.groupId])
@@ -105,7 +118,6 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
             }
             12 -> {
                 // SEND TO A CONTACT :
-                Log.d("SEND TRANSPO", "")
                 val getContactIntent =
                     Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
                 selectedTransposition = element
@@ -135,7 +147,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
                 }
 
                 val jsonBody =
-                    JSONObject("{\"user_uuid\":\"${userUUID}\", \"transposition\":${transpositionJson}}");
+                    JSONObject("{\"user_uuid\":\"${userUUID}\", \"transposition\":${transpositionJson}}")
 
                 val request = JsonObjectRequest(
                     url,
@@ -166,6 +178,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
         }
     }
 
+    // Résultat de la séléction d'un contact :
     private val resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {

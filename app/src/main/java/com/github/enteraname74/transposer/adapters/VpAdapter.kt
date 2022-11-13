@@ -8,6 +8,10 @@ import com.github.enteraname74.transposer.fragments.FavouritesFragment
 import com.github.enteraname74.transposer.fragments.ScalesFragment
 import com.github.enteraname74.transposer.fragments.TranspositionsFragment
 
+/*
+La classe permettant de gérer les tabs et les fragments de l'activité principale
+Elle hérite de FragmentStateAdapter pour gérer et afficher nos fragments.
+ */
 class VpAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount() = 3

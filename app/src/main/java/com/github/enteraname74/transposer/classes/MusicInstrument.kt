@@ -10,5 +10,4 @@ La classe implémente Serializable ce qui lui permet d'être enregistrée dans u
 class MusicInstrument(
     val instrumentName : String,
     val tone : Int
-) : Serializable {
-}
+) : Serializable

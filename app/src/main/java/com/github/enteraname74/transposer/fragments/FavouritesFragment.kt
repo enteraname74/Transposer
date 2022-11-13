@@ -30,6 +30,10 @@ import org.json.JSONObject
 import java.io.File
 import java.util.*
 
+/*
+Fragment permettant d'afficher la liste des transpositions en favoris.
+Le fragment hérité de Fragment() et implémente le listener TranspositionsList.OnTranspositionListener.
+ */
 class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListener {
     private lateinit var favouritesRecyclerView: RecyclerView
     private lateinit var selectedTransposition: Transposition
@@ -38,6 +42,7 @@ class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListene
         super.onCreate(savedInstanceState)
     }
 
+    // Fonction permettant d'initialiser et de gérer tout ce qui touche à la vue :
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,18 +50,23 @@ class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListene
         val view = inflater.inflate(R.layout.fragment_favourites, container, false)
 
         favouritesRecyclerView = view.findViewById(R.id.favourites_recycler_view)
-        favouritesRecyclerView.adapter =
-            TranspositionsList(context as Context, AppData.favouritesList, this, "Favourites")
+        favouritesRecyclerView.adapter = TranspositionsList(context as Context, AppData.favouritesList, this, "Favourites")
         return view
     }
 
+    /*
+     Quand on revient sur ce fragment, on s'assure de mettre à jour les données
+     au cas où ces dernières ont changé
+     */
     override fun onResume() {
         super.onResume()
-        Log.d("TOT", AppData.favouritesList.size.toString())
         favouritesRecyclerView.adapter?.notifyDataSetChanged()
     }
 
-    // L'id du champ selectionné doit être différent de tous les autres champs disponibles dans les autres fragments pour éviter d'appeler le onContextItemSelected d'autres fragments :
+    /*
+    L'id du champ selectionné doit être différent de tous les autres champs disponibles dans les autres fragments
+    pour éviter d'appeler le onContextItemSelected d'autres fragments :
+     */
     override fun onContextItemSelected(item: MenuItem): Boolean {
         println(item.itemId.toString())
         val globalIndex = AppData.allTranspositions.indexOf(AppData.favouritesList[item.groupId])
@@ -90,7 +100,6 @@ class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListene
             }
             22 -> {
                 // SEND TO A CONTACT :
-                Log.d("SEND TRANSPO", "")
                 val getContactIntent =
                     Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
                 selectedTransposition = element
@@ -120,7 +129,7 @@ class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListene
                 }
 
                 val jsonBody =
-                    JSONObject("{\"user_uuid\":\"${userUUID}\", \"transposition\":${transpositionJson}}");
+                    JSONObject("{\"user_uuid\":\"${userUUID}\", \"transposition\":${transpositionJson}}")
 
                 val request = JsonObjectRequest(
                     url,
@@ -151,6 +160,7 @@ class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListene
         }
     }
 
+    // Résultat de la séléction d'un contact :
     private val resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {

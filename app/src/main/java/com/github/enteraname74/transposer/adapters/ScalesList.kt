@@ -6,15 +6,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
-import com.github.enteraname74.transposer.classes.Scale
 import java.io.Serializable
 
-// Classe permettant de représenter une liste de musiques :
+// Classe permettant de représenter une liste de gammes :
 data class ScalesList(
     private val context : Context,
     private val scaleListener : OnScaleListener
     ) : RecyclerView.Adapter<ScalesList.ScaleViewHolder>(), Serializable {
 
+    /*
+    Classe permettant de répresenter un élément de notre liste
+    Elle implémente plusieurs éléments pour gérer les cliques, les cliques long ou encore les contextMenu
+     */
     class ScaleViewHolder(itemView: View, private var onScaleListener: OnScaleListener) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener,View.OnCreateContextMenuListener {
 

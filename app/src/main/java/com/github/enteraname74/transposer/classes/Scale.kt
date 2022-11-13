@@ -8,5 +8,4 @@ La classe implémente Serializable ce qui lui permet d'être enregistrée dans u
 class Scale(
     var scaleName : String,
     var scaleList : ArrayList<String>
-) {
-}
+)

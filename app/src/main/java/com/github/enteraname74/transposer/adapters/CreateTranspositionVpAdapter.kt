@@ -6,6 +6,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.github.enteraname74.transposer.fragments.*
 
+/*
+La classe permettant de gérer les tabs et les fragments de l'activité de création de transpositions.
+Elle hérite de FragmentStateAdapter pour gérer et afficher nos fragments.
+ */
 class CreateTranspositionVpAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = 4
 
