@@ -61,7 +61,9 @@ class TranspositionsList(
                     adapterPosition,
                     if (source != "Favourites") 11 else 21,
                     0,
-                    itemView.resources.getString(R.string.change_favourite_statue)
+                    if (source != "Favourites") itemView.resources.getString(R.string.add_to_favourites) else itemView.resources.getString(
+                        R.string.remove_from_favourites
+                    )
                 )
                 menu?.add(
                     adapterPosition,
