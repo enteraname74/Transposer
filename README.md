@@ -22,7 +22,7 @@ Cette fonctionnalité est alors disponible pour les cas suivants :
 
 De plus, vous avez accès à de multiples fonctionnalités en cliquant de façon prolongée sur une gamme ou une transposition.
 
-<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-33-09-080_com.github.enteraname74.transposer.jpg" alt="" width="294" data-align="center">
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-17-51-02-821_com.github.enteraname74.transposer.jpg" alt="" width="294" data-align="center">
 
 Vous pouvez aussi visionner une gamme ou une transposition en cliquant simplement dessus.
 
@@ -61,7 +61,7 @@ Vous avez la possibilité de vous créer un profil avec un nom d'utilisateur et 
 
 <img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-33-18-212_com.github.enteraname74.transposer.jpg" alt="" width="300" data-align="center">
 
-<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-33-20-661_com.github.enteraname74.transposer.jpg" alt="" width="300" data-align="center">
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-17-51-38-677_com.github.enteraname74.transposer.jpg" alt="" width="300" data-align="center">
 
 ## Ergnonomie et accessibilité de l'application :
 
