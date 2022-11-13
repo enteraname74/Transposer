@@ -21,7 +21,8 @@
     <string name="send_to_a_contact">Send to a contact</string>
     <string name="transposition_s_name">Transposition\'s name</string>
     <string name="delete_transposition">Delete transposition</string>
-    <string name="change_favourite_statue">Change favourite statue</string>
+    <string name="add_to_favourites">Add to favourites</string>
+    <string name="remove_from_favourites">Remove from favourites</string>
     <string name="transposition_has_been_deleted">Transposition has been deleted</string>
     <string name="transposition_removed_from_favourite">Transposition removed from the favourites</string>
     <string name="transposition_added_to_favourite">Transposition added to the favourites</string>
@@ -50,6 +51,4 @@
     <string name="a_title_must_be_set_correctly">A title must be set correctly !</string>
     <string name="specify_the_name_of_the_new_transposition">Specify the name of the new transposition</string>
     <string name="cancel">Cancel</string>
-    <string name="add_to_favourites">Add to favourites</string>
-    <string name="remove_from_favourites">Remove from favourites</string>
 </resources>

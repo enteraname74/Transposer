@@ -21,7 +21,8 @@
     <string name="send_to_a_contact">Inviare a un contatto</string>
     <string name="transposition_s_name">Nome della trasposizione</string>
     <string name="delete_transposition">Cancellare la trasposizione</string>
-    <string name="change_favourite_statue">Cambiare la statua preferita</string>
+    <string name="add_to_favourites">Aggiungi ai preferiti</string>
+    <string name="remove_from_favourites">Rimuovi dai preferiti</string>
     <string name="transposition_has_been_deleted">La trasposizione è stata eliminata</string>
     <string name="transposition_removed_from_favourite">Trasposizione rimossa dai preferiti</string>
     <string name="transposition_added_to_favourite">Trasposizione aggiunta ai preferiti</string>
