@@ -9,12 +9,21 @@ import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
 import com.github.enteraname74.transposer.classes.Transposition
 
+/*
+Activité permettant de visualiser une transposition.
+Vu que c'est une activité, elle hérite d'AppCompatActivity.
+ */
 class SeeTranspositionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_see_transposition)
 
+        // Récupérons la position de la transposition :
         val position = intent.getSerializableExtra("POSITION") as Int
+        /*
+         Récupérons la source (dans quelle liste on a séléctionnée la partition) afin de savoir
+         dans quelle liste aller chercher notre transposition avec notre position.
+         */
         val source = intent.getSerializableExtra("SOURCE") as String
 
         val transpositionName = findViewById<TextView>(R.id.transposition_name)
