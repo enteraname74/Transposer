@@ -83,8 +83,10 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
             11 -> {
                 // ADD TO FAVOURITES
                 if (AppData.allTranspositions[item.groupId].isFavourite) {
+                    AppData.allTranspositions[item.groupId].isFavourite = false
+                    AppData.favouritesList.remove(element)
                     Toast.makeText(
-                        context, R.string.already_in_favourites, Toast.LENGTH_SHORT
+                        context, R.string.transposition_removed_from_favourite, Toast.LENGTH_SHORT
                     ).show()
                 } else {
                     AppData.allTranspositions[item.groupId].isFavourite = true
@@ -93,6 +95,11 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
                         context, R.string.transposition_added_to_favourite, Toast.LENGTH_SHORT
                     ).show()
                 }
+                /*
+                On indique que l'élément selectionné a eu un changement au niveau des favoris
+                On met donc à jour cet élément uniquement pour pouvoir mettre à jour son contextMenu :
+                 */
+                transpositionRecyclerView.adapter?.notifyItemChanged(item.groupId,null)
                 CoroutineScope(Dispatchers.IO).launch { AppData.writeAllTranspositions(context?.applicationContext?.filesDir as File) }
                 true
             }
