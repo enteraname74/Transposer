@@ -39,6 +39,12 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.io.ObjectInputStream
 
+/*
+L'activité MainActivity est l'activité principale de l'application.
+Elle se lance dès le début.
+Vu que c'est une activité, elle hérite d'AppCompatActivity.
+Elle implémente aussi un listener, 
+ */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var sharedPref : SharedPreferences
     private lateinit var navigationView: NavigationView

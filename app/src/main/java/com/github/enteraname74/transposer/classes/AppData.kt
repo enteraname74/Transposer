@@ -8,14 +8,23 @@ import java.io.IOException
 import java.io.ObjectOutputStream
 import kotlin.collections.ArrayList
 
+/*
+Classe utilisée pour stocker toutes les constantes et les données de l'applications utilisées
+dans nos activités.
+
+Tout est stocké dans un companion object pour un accès simple.
+ */
 class AppData {
     companion object {
+        // Clés pour les shared preferences :
         const val SHARED_PREF_KEY = "SHARED_PREF"
         const val USERNAME_KEY = "USERNAME"
         const val PROFILE_PICTURE_KEY = "PROFILE PICTURE"
 
+        // nom du fichier où sont sauvegardé les transpositions de l'utilisateur :
         val allTranspositionFile = "allTranspositions.transpose"
 
+        // Toutes les notes au format diese :
         val allNotesDiese = ArrayList<String>(listOf(
             "DO",
             "DO#",
@@ -31,6 +40,7 @@ class AppData {
             "SI"
         ))
 
+        // Toutes les notes au format bémol :
         val allNotesBemol = ArrayList<String>(listOf(
             "DO",
             "RE♭",
@@ -46,6 +56,7 @@ class AppData {
             "SI"
         ))
 
+        // Liste d'instruments :
         val instruments = ArrayList<MusicInstrument>(listOf(
             MusicInstrument("Alto Saxophone", 3),
             MusicInstrument("Guitar", 4),
@@ -54,6 +65,7 @@ class AppData {
             MusicInstrument("Trumpet", 10)
         ))
 
+        // Liste de toutes les gammes :
         val scalesList = ArrayList<Scale>(listOf(
             Scale("DO Majeur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI","DO"))),
             Scale("LA Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI","DO"))),
@@ -81,12 +93,22 @@ class AppData {
             Scale("MI Mineur", ArrayList(listOf("DO","RE","MI","FA#","SOL","LA","SI","DO"))))
         )
 
+        /*
+        Liste accueillant toutes les transpositions de l'utilisateur.
+        Elles sera remplis lors du lancement de l'application :
+         */
         var allTranspositions = ArrayList<Transposition>()
 
+        // Liste accueillant les transpositions favorites de l'utilisateur :
         var favouritesList = ArrayList<Transposition>()
 
+        // Liste accueillant les transpositions du cloud :
         var cloudTransposition = ArrayList<Transposition>()
 
+        /*
+        Procédure permettant d'écrire toutes nos partitions dans le fichier où elles sont entreposées.
+        Il faudra passer le chemin jusqu'au fichier :
+         */
         fun writeAllTranspositions(path : File){
             try {
                 val oos = ObjectOutputStream(FileOutputStream(File(path, allTranspositionFile)))
