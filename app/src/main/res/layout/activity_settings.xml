@@ -45,10 +45,9 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_gravity="center"
         android:id="@+id/profile_picture"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:padding="10dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="200dp"
         app:shapeAppearance="@style/roundedImageViewRounded"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
@@ -67,60 +66,65 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="6"
-            android:orientation="vertical">
-
-            <TextView
-                android:textColor="@color/text_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/username"/>
-
-            <EditText
-                android:textColor="@color/text_color"
-                android:id="@+id/username_edit_text"
-                android:inputType="text"
-                android:hint="@string/enter_a_username"
-                android:autofillHints="name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            android:layout_weight="5"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:gravity="bottom|center_horizontal"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <Button
+                <TextView
                     android:textColor="@color/text_color"
-                    android:id="@+id/save_button"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:backgroundTint="@color/secondary_color"
-                    android:text="@string/save"/>
+                    android:text="@string/username"/>
+
+                <EditText
+                    android:textColor="@color/text_color"
+                    android:id="@+id/username_edit_text"
+                    android:inputType="text"
+                    android:hint="@string/enter_a_username"
+                    android:autofillHints="name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|center_horizontal"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:textColor="@color/text_color"
+                        android:id="@+id/save_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:backgroundTint="@color/secondary_color"
+                        android:text="@string/save"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                </LinearLayout>
 
                 <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"/>
+
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
+        </ScrollView>
 
         <View
             android:layout_width="0dp"
