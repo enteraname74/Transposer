@@ -69,6 +69,13 @@ class TranspositionsList(
                     0,
                     itemView.resources.getString(R.string.share_online)
                 )
+            } else {
+                menu?.add(
+                    adapterPosition,
+                    14,
+                    0,
+                    itemView.resources.getString(R.string.save_locally)
+                )
             }
             menu?.add(
                 adapterPosition,

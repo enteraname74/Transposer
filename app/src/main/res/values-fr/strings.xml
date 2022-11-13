@@ -45,4 +45,6 @@
     <string name="share_online">Partager en ligne</string>
     <string name="error">Une erreur est survenue</string>
     <string name="transposition_shared">La transposition a été partagée</string>
+    <string name="save_locally">Sauvegarder localement</string>
+    <string name="saved_locally">Sauvegardé localement</string>
 </resources>

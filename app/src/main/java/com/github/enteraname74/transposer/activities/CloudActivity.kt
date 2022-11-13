@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.telephony.SmsManager
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -88,13 +87,11 @@ class CloudActivity : AppCompatActivity(), TranspositionsList.OnTranspositionLis
             spinner?.visibility = View.GONE
 
             recyclerView.adapter = TranspositionsList(this, transpositions, this, "Cloud")
-        }, { err ->
+        }, { _ ->
             // On enlève l'animation de chargement.
             spinner?.visibility = View.GONE
             Toast.makeText(
-                applicationContext,
-                resources.getString(R.string.error),
-                Toast.LENGTH_SHORT
+                applicationContext, resources.getString(R.string.error), Toast.LENGTH_SHORT
             ).show()
         })
 
@@ -104,6 +101,7 @@ class CloudActivity : AppCompatActivity(), TranspositionsList.OnTranspositionLis
         queue.start()
     }
 
+    // Ouvre la transposition lorsque celle-ci est cliqué.
     override fun onTranspositionClick(position: Int) {
         val intent = Intent(applicationContext, SeeTranspositionActivity::class.java)
         intent.putExtra("POSITION", position)
@@ -125,6 +123,53 @@ class CloudActivity : AppCompatActivity(), TranspositionsList.OnTranspositionLis
                 resultLauncher.launch(getContactIntent)
                 true
             }
+            14 -> {
+                // SAVE LOCALLY :
+                val listTranspositionNames: ArrayList<String> = ArrayList<String>()
+                var i: Int = 0
+                var alreadyExist: Boolean = false
+
+                // On parcours toutes les transpositions locales, afin de voir si une transposition
+                // de même nom que celle que l'on souhaite enregistrer, existe déjà.
+                // Au cas où ce serait le cas, on mets de côté le nom des transpositions, pour
+                // pouvoir l'enregistrer au format "nom (n)", n étant le nombre de transpositions
+                // partageant le même nom.
+                while (i < AppData.allTranspositions.size) {
+                    val elmt = AppData.allTranspositions[i]
+
+                    if (elmt.transpositionName == element.transpositionName) {
+                        alreadyExist = true
+                    }
+
+                    listTranspositionNames.add(elmt.transpositionName)
+
+                    i++
+                }
+
+                // Dans le cas où la transpositions existerait déjà, on l'enregistre au format
+                // "nom (n)", n représentant le nombre de transpositions partageant le même nom.
+                if (alreadyExist) {
+                    var n: Int = 1
+                    while (listTranspositionNames.contains("${element.transpositionName} (" + n + ")")) {
+                        n++
+                    }
+
+                    element.transpositionName = "${element.transpositionName} (" + n + ")"
+                }
+
+                AppData.allTranspositions.add(element)
+
+                AppData.writeAllTranspositions(applicationContext.filesDir)
+
+                // On notifie l'utilisateur.
+                Toast.makeText(
+                    applicationContext,
+                    R.string.saved_locally,
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                true
+            }
             else -> super.onContextItemSelected(item)
         }
     }
@@ -140,7 +185,6 @@ class CloudActivity : AppCompatActivity(), TranspositionsList.OnTranspositionLis
                     val phoneIndex =
                         cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
                     val num = cursor.getString(phoneIndex)
-                    Log.d("RESULT", num.toString())
 
                     try {
                         val smsManager = SmsManager.getDefault()

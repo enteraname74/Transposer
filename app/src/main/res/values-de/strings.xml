@@ -45,4 +45,6 @@
     <string name="share_online">Online teilen</string>
     <string name="error">Ein Fehler ist aufgetreten</string>
     <string name="transposition_shared">Die Umsetzung wurde geteilt</string>
+    <string name="save_locally">Lokal speichern</string>
+    <string name="saved_locally">Lokal gespeichert</string>
 </resources>
