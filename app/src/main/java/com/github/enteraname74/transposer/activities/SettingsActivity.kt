@@ -26,6 +26,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
+/*
+Activité permettant de modifier les informations de l'utilisateur.
+Vu que c'est une activité, elle hérite d'AppCompatActivity.
+ */
 class SettingsActivity : AppCompatActivity() {
     private lateinit var usernameEditText: EditText
     private lateinit var profilePicture: ShapeableImageView

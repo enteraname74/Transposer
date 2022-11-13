@@ -51,4 +51,6 @@
     <string name="a_title_must_be_set_correctly">Ein Titel muss korrekt eingegeben werden !</string>
     <string name="specify_the_name_of_the_new_transposition">Geben Sie den Namen der neuen Transposition an</string>
     <string name="cancel">abbrechen</string>
+    <string name="add_to_favourites">Zu Favoriten hinzufügen</string>
+    <string name="remove_from_favourites">Aus den Favoriten entfernen</string>
 </resources>

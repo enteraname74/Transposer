@@ -158,10 +158,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.openDrawer(GravityCompat.START)
     }
 
+    // Fonction permettant de savoir quel item du menu de navigation a été séléctionné :
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         return when(item.itemId) {
             R.id.settings -> {
+                // Si on clique sur l'item settings, on change d'activité :
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
                 true
@@ -170,6 +172,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    // Procédure permettant de récupérations de nos transpositions :
     private fun readAllTranspositions(){
         val path = applicationContext.filesDir
         var content = ArrayList<Transposition>()
@@ -183,10 +186,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         AppData.allTranspositions = content
     }
 
+    /*
+    Fonction permettant de vérifier si une permission a été accepté par l'utilisateur.
+    La fonction prend une chaine de caractère en entrée (la permission à vérifier)
+     */
     private fun checkPermission(permission : String) : Boolean {
         return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
     }
 
+    /*
+    Fonction permettant de demander une permission à l'utilisateur.
+    La fonction prend une chaine de caractère en entrée (la permission à valider)
+     */
     private fun requestPermission(permission : String) {
         if(!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)){
             ActivityCompat.requestPermissions(this, arrayOf(permission), 69)

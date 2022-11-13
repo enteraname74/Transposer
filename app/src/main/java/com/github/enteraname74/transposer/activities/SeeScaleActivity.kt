@@ -8,11 +8,16 @@ import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
 import org.w3c.dom.Text
 
+/*
+Activité permettant de visualiser une gamme.
+Vu que c'est une activité, elle hérite d'AppCompatActivity.
+ */
 class SeeScaleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_see_scale)
 
+        // Récupérons la position de la gamme séléctionnée :
         val position = intent.getSerializableExtra("POSITION") as Int
 
         val scaleName = findViewById<TextView>(R.id.scale_name)
