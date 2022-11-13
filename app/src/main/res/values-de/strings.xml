@@ -21,9 +21,7 @@
     <string name="send_to_a_contact">An einen Kontakt senden</string>
     <string name="transposition_s_name">Name der Transposition</string>
     <string name="delete_transposition">Transposition löschen</string>
-    <string name="add_to_favourites">Zu Favoriten hinzufügen</string>
-    <string name="remove_from_favourites">Aus den Favoriten entfernen</string>
-    <string name="already_in_favourites">Umsetzung bereits bei den Favoriten</string>
+    <string name="change_favourite_statue">Den Status von Favoriten ändern</string>
     <string name="transposition_has_been_deleted">Die Umsetzung wurde abgeschafft</string>
     <string name="transposition_removed_from_favourite">Die Umsetzung wurde aus den Favoriten entfernt</string>
     <string name="transposition_added_to_favourite">Die Transposition wurde zu den Favoriten hinzugefügt</string>
