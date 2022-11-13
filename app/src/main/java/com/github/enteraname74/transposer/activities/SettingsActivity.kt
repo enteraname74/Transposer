@@ -50,8 +50,8 @@ class SettingsActivity : AppCompatActivity() {
         profilePicture.setOnClickListener { selectImage() }
 
         sharedPref = getSharedPreferences(AppData.SHARED_PREF_KEY, Context.MODE_PRIVATE)
-        Log.d("SIZE THERE", sharedPref.all.size.toString())
 
+        // Si l'utilisateur a modifié les informations de bases, on les change :
         if (sharedPref.contains(AppData.USERNAME_KEY)) {
             usernameEditText.setText(sharedPref.getString(AppData.USERNAME_KEY, ""))
         }
@@ -63,33 +63,43 @@ class SettingsActivity : AppCompatActivity() {
 
             profilePicture.setImageBitmap(bitmapImage)
         }
-
-        //sharedPref.edit().clear().apply()
-
     }
 
+    // Procedure permettant de selectionner une image :
     private fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         resultImageLauncher.launch(intent)
     }
-
+    // Résultat de la séléction d'une image :
     private var resultImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri: Uri? = result.data?.data
-
+                // Utilisons l'URI obtenu pour obtenir un bitmap de l'image :
                 val inputStream = applicationContext.contentResolver.openInputStream(uri as Uri)
                 bitmapImage = BitmapFactory.decodeStream(inputStream)
                 profilePicture.setImageBitmap(bitmapImage)
             }
         }
 
+    // Permet de sauvegarder les changements et de quitter l'activité :
     private fun saveChangesAndQuit() {
         CoroutineScope(Dispatchers.IO).launch {
             with(sharedPref.edit()) {
-                putString(AppData.USERNAME_KEY, usernameEditText.text.toString())
+
+                if (usernameEditText.text.toString().trim().isNotEmpty()){
+                    Log.d("change", "")
+                    putString(AppData.USERNAME_KEY, usernameEditText.text.toString())
+                }
 
                 if (bitmapImage != null) {
+                    /*
+                    Les sharedPreferences ne sont pas sensé être utilisés avec des types autres que primitives.
+                    Ainsi, on devrait éviter d'enregistrer des images dedans ! (dans notre cas, une bitmap)
+                    Mais, nous allons quand même faire cela à but expérimental. (utilisation des shared preferences)
+
+                    Il faut alors convertir l'image en base64 pour l'enrgistrer comme une chaine de caractères :
+                     */
                     val baos = ByteArrayOutputStream()
                     bitmapImage?.compress(Bitmap.CompressFormat.PNG, 100, baos)
                     val bytes = baos.toByteArray()
