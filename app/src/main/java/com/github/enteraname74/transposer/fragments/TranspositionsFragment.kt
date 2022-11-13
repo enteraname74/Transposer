@@ -81,7 +81,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
                 true
             }
             11 -> {
-                // ADD TO FAVOURITES
+                // CHANGE FAVOURITE STATUE OF TRANSPOSITION
                 if (AppData.allTranspositions[item.groupId].isFavourite) {
                     AppData.allTranspositions[item.groupId].isFavourite = false
                     AppData.favouritesList.remove(element)
