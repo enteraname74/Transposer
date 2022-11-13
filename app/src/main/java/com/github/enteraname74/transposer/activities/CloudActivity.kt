@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.telephony.SmsManager
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -113,7 +114,8 @@ class CloudActivity : AppCompatActivity(), TranspositionsList.OnTranspositionLis
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val globalIndex =
             AppData.cloudTransposition.indexOf(AppData.cloudTransposition[item.groupId])
-        val element = AppData.cloudTransposition[globalIndex]
+        val element = AppData.cloudTransposition[item.groupId].copy()
+        Log.d("ELEMENT", element.transpositionName.toString())
         return when (item.itemId) {
             12 -> {
                 // SEND TO A CONTACT :

@@ -12,7 +12,7 @@ un instrument final,
 un booleen permettant de savoir si la transposition est dans nos favoris.
 La classe implémente Serializable ce qui lui permet d'être enregistrée dans un fichier.
  */
-class Transposition(
+data class Transposition(
     var transpositionName: String,
     val startPartition: ArrayList<String>,
     val startInstrument: MusicInstrument,
