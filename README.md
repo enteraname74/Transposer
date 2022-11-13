@@ -1,40 +1,94 @@
 # Transposer
 
-This native application will help the user to transpose music sheet
+Avec Transposer, vous pouvez facilement savoir quelle gamme utiliser avec votre instrument pour jouer correctement avec d'autres instruments !
 
+# Tour des fonctionnalités de l'application :
 
+## Listes navigables :
 
-# 
+Transposer propose à l'utilisateur une agréable expérience pour visionner et séléctionner une gamme ou une transposition :
 
-## Liste navigable :
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-32-14-656_com.github.enteraname74.transposer.jpg" alt="" data-align="center" width="293">
 
-Afficher la liste des partitions, des favoris, de toutes les gammes.
-Les listes pourront avoir les fonctionnalités suivantes :
+Cette fonctionnalité est alors disponible pour les cas suivants :
 
-- cliquer sur un élément pour l'afficher
+- Affichage des gammes
 
-- cliquer longuement pour gérer un élément (l'ajouter en favoris, le supprimer de la liste...etc)
+- Affichage des transpositions
 
-Il y aurait une liste pour voir toutes les gammes, une autre pour voir les partitions transposées.
+- Affichage des favoris
+
+- Affichage des transpositions partagées dans le cloud
+
+De plus, vous avez accès à de multiples fonctionnalités en cliquant de façon prolongée sur une gamme ou une transposition.
+
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-17-51-02-821_com.github.enteraname74.transposer.jpg" alt="" width="294" data-align="center">
+
+Vous pouvez aussi visionner une gamme ou une transposition en cliquant simplement dessus.
+
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-33-14-693_com.github.enteraname74.transposer.jpg" alt="" width="288" data-align="center">
 
 ## Connexion à un service externe :
 
-Sauvegarde de données dans un espace partagé entre utilisateur pour échanger des partitions / gammes. On enregistre les données dans une base de données qu'on accède via une API.
+Un système de partage a été mis en place pour permettre aux utilisateurs du monde entier de partager leurs transpositions !
+
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-33-29-734_com.github.enteraname74.transposer.jpg" alt="" width="292" data-align="center">
+
+L'utilisateur a aussi la possibilité de récupérer une transposition pour l'avoir en local sur son téléphone.
+
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-33-43-782_com.github.enteraname74.transposer.jpg" alt="" width="287" data-align="center">
 
 ## Stockage des données en local :
 
-On enregistre en local les données de chaque utilisateur et leurs favoris.
+Toutes les transpositions de l'utilisateur sont enregistrées en local sur un fichier dans l'espace de stockage interne de l'application.
+De plus, les informations concernant le profil de l'utilisateur sont enregistrés dans les sharedPreferences de l'application.
 
 ## Accès à des fonctionnalités du téléphone :
 
-### Lecture de son :
+Avec Transposer, l'utilisateur a la possibilité d'envoyer une gamme ou une transposition à un amis par message.
+Cette fonctionnalité s'avère utile lorsque vous voulez partager une transposition à une seule personne ou si vous voulez partager une transposition ou une gamme à des personnes ne disposant pas de l'application Transposer.
 
-On accède au lecteur de musique du téléphone pour joueur nos partitions / gammes.
+## Création d'une transposition :
 
-### Envoie de partitions à un contact par message :
+En cliquant sur le bouton flottant, situé sur la page principale de l'application, vous aurez la possibilitée de créer une transposition.
+Le menu de création vous permet de naviguer facilement entre les catégories pour avancer dans la création de votre transposition.
 
-L'utilisateur de l'appli peut envoyer des partitions a ses contacts.
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-32-26-800_com.github.enteraname74.transposer.jpg" alt="" width="293" data-align="center">
 
-### Prise de photos de partitions :
+## Profil de l'utilisateur :
 
-On peut envoyer / stocker des photos de partitions prisent par l'utilisateur.
+Vous avez la possibilité de vous créer un profil avec un nom d'utilisateur et une photo de profile. Ces informations sont visibles et modifiable dans le menu de navigation de la page principale de l'application.
+
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-33-18-212_com.github.enteraname74.transposer.jpg" alt="" width="300" data-align="center">
+
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-17-51-38-677_com.github.enteraname74.transposer.jpg" alt="" width="300" data-align="center">
+
+## Ergnonomie et accessibilité de l'application :
+
+### Langues supportés par l'application :
+
+Transposer est entièrement traduites dans les langues suivantes :
+
+- Français
+
+- Anglais
+
+- Allemand
+
+- Italien
+
+## Mode portrait et paysage de l'application :
+
+Profitez des avantages de ces deux modes d'affichage avec Transposer !
+L'affichage des éléments de l'application permet d'utiliser le mode portrait et paysage.
+
+## Performance de Transposer :
+
+L'utilisation de coroutines permet à notre application d'être rapide en éxécutant des tâches en en asynchrone.
+
+### Thème clair et sombre de l'application :
+
+Transposer propose un thème clair et un thème sombre s'adaptant en fonction des choix de l'utilisateur sur son téléphone.
+
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-32-14-656_com.github.enteraname74.transposer.jpg" alt="" width="318" data-align="center">
+<img title="" src="Screenshots_of_app/Screenshot_2022-11-13-13-32-01-677_com.github.enteraname74.transposer.jpg" alt="" width="320" data-align="center">
