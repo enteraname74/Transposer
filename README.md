@@ -67,13 +67,15 @@ Vous avez la possibilité de vous créer un profil avec un nom d'utilisateur et 
 
 ### Langues supportés par l'application :
 
-Transposer est entièrement traduites dans les langues suivants :
+Transposer est entièrement traduites dans les langues suivantes :
 
 - Français
 
 - Anglais
 
 - Allemand
+
+- Italien
 
 ## Mode portrait et paysage de l'application :
 
