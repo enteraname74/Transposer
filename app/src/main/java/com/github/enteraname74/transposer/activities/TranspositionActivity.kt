@@ -113,7 +113,7 @@ class TranspositionActivity : AppCompatActivity() {
         builder.setView(inputText)
 
         builder.setPositiveButton(R.string.save) { _, _ ->
-            if(inputText.text.toString() != "" && AppData.allTranspositions.find { it.transpositionName == inputText.text.toString()} == null){
+            if(inputText.text.toString().trim() != "" && AppData.allTranspositions.find { it.transpositionName == inputText.text.toString().trim()} == null){
                 val newTransposition = Transposition(
                     inputText.text.toString(),
                     StartScaleFragment.startScale.scaleList,
