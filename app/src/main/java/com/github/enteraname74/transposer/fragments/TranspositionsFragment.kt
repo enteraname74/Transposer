@@ -34,7 +34,7 @@ import java.util.*
 /*
 Fragment permettant d'afficher la liste gammes.
 Le fragment hérité de Fragment() et implémente le listener TranspositionsList.OnTranspositionListener.
- */
+*/
 class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionListener {
     private lateinit var transpositionRecyclerView: RecyclerView
     private lateinit var selectedTransposition: Transposition
@@ -75,7 +75,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
     /*
     L'id du champ selectionné doit être différent de tous les autres champs disponibles dans les autres fragments
     pour éviter d'appeler le onContextItemSelected d'autres fragments :
-     */
+    */
     override fun onContextItemSelected(item: MenuItem): Boolean {
         println(item.itemId.toString())
         val globalIndex = AppData.allTranspositions.indexOf(AppData.allTranspositions[item.groupId])
@@ -112,7 +112,7 @@ class TranspositionsFragment : Fragment(), TranspositionsList.OnTranspositionLis
                 On indique que l'élément selectionné a eu un changement au niveau des favoris
                 On met donc à jour cet élément uniquement pour pouvoir mettre à jour son contextMenu :
                  */
-                transpositionRecyclerView.adapter?.notifyItemChanged(item.groupId,null)
+                transpositionRecyclerView.adapter?.notifyItemChanged(item.groupId, null)
                 CoroutineScope(Dispatchers.IO).launch { AppData.writeAllTranspositions(context?.applicationContext?.filesDir as File) }
                 true
             }

@@ -70,6 +70,7 @@ class SettingsActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         resultImageLauncher.launch(intent)
     }
+
     // Résultat de la séléction d'une image :
     private var resultImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -87,7 +88,7 @@ class SettingsActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             with(sharedPref.edit()) {
 
-                if (usernameEditText.text.toString().trim().isNotEmpty()){
+                if (usernameEditText.text.toString().trim().isNotEmpty()) {
                     Log.d("change", "")
                     putString(AppData.USERNAME_KEY, usernameEditText.text.toString())
                 }

@@ -45,6 +45,8 @@ class CloudActivity : AppCompatActivity(), TranspositionsList.OnTranspositionLis
         spinner = findViewById(R.id.progressBarCloud)
 
         val url = "https://transposer.skilldary.com/transposer/get_transpositions"
+
+        // On crée la requête pour obtenir toutes les transpositions étant sur le cloud.
         val request = JsonObjectRequest(Request.Method.GET, url, null, { res ->
             val gson = Gson()
             val type: Type = object : TypeToken<ArrayList<Transposition?>?>() {}.type

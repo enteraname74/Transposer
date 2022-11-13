@@ -50,7 +50,8 @@ class FavouritesFragment : Fragment(), TranspositionsList.OnTranspositionListene
         val view = inflater.inflate(R.layout.fragment_favourites, container, false)
 
         favouritesRecyclerView = view.findViewById(R.id.favourites_recycler_view)
-        favouritesRecyclerView.adapter = TranspositionsList(context as Context, AppData.favouritesList, this, "Favourites")
+        favouritesRecyclerView.adapter =
+            TranspositionsList(context as Context, AppData.favouritesList, this, "Favourites")
         return view
     }
 

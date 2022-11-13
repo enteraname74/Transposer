@@ -1,9 +1,9 @@
 package com.github.enteraname74.transposer.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.classes.AppData
 
@@ -47,14 +47,14 @@ class SeeTranspositionActivity : AppCompatActivity() {
         transpositionName.text = currentList[position].transpositionName
 
         var startPartitionText = ""
-        for (note in currentList[position].startPartition){
+        for (note in currentList[position].startPartition) {
             startPartitionText += " $note "
         }
         startPartitionField.text = startPartitionText
         startInstrumentField.text = currentList[position].startInstrument.instrumentName
 
         var endPartitionText = ""
-        for (note in currentList[position].endPartition){
+        for (note in currentList[position].endPartition) {
             endPartitionText += " $note "
         }
         endPartitionField.text = endPartitionText

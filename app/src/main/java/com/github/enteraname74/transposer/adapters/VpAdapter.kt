@@ -17,11 +17,19 @@ class VpAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragm
     override fun getItemCount() = 3
 
     override fun createFragment(position: Int): Fragment {
-        return when(position){
-            0 -> { ScalesFragment() }
-            1 -> { TranspositionsFragment() }
-            2 -> { FavouritesFragment() }
-            else -> { throw Resources.NotFoundException("Position not found")}
+        return when (position) {
+            0 -> {
+                ScalesFragment()
+            }
+            1 -> {
+                TranspositionsFragment()
+            }
+            2 -> {
+                FavouritesFragment()
+            }
+            else -> {
+                throw Resources.NotFoundException("Position not found")
+            }
         }
     }
 }

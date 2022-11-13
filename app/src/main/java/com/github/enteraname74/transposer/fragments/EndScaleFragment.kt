@@ -1,9 +1,11 @@
 package com.github.enteraname74.transposer.fragments
 
 import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.github.enteraname74.transposer.R
 import com.github.enteraname74.transposer.activities.TranspositionActivity
 import com.github.enteraname74.transposer.classes.AppData
@@ -14,7 +16,7 @@ Fragment représentant l'étape de la gamme de fin à indiquer dans l'activité 
 Le fragment hérité de Fragment().
  */
 class EndScaleFragment : Fragment() {
-    private lateinit var endScaleTextView : TextView
+    private lateinit var endScaleTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +50,7 @@ class EndScaleFragment : Fragment() {
         endScale = (activity as TranspositionActivity).createEndScale()
 
         var partitionText = ""
-        for (note in endScale.scaleList){
+        for (note in endScale.scaleList) {
             partitionText += " $note "
         }
 
@@ -60,6 +62,6 @@ class EndScaleFragment : Fragment() {
     parente pour créer notre transposition
     */
     companion object {
-        var endScale : Scale = AppData.scalesList[0]
+        var endScale: Scale = AppData.scalesList[0]
     }
 }

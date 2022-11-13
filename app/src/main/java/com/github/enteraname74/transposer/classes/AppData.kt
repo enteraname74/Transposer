@@ -5,7 +5,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.ObjectOutputStream
-import kotlin.collections.ArrayList
 
 /*
 Classe utilisée pour stocker toutes les constantes et les données de l'applications utilisées
@@ -24,72 +23,152 @@ class AppData {
         val allTranspositionFile = "allTranspositions.transpose"
 
         // Toutes les notes au format diese :
-        val allNotesDiese = ArrayList<String>(listOf(
-            "DO",
-            "DO#",
-            "RE",
-            "RE#",
-            "MI",
-            "FA",
-            "FA#",
-            "SOL",
-            "SOL#",
-            "LA",
-            "LA#",
-            "SI"
-        ))
+        val allNotesDiese = ArrayList<String>(
+            listOf(
+                "DO",
+                "DO#",
+                "RE",
+                "RE#",
+                "MI",
+                "FA",
+                "FA#",
+                "SOL",
+                "SOL#",
+                "LA",
+                "LA#",
+                "SI"
+            )
+        )
 
         // Toutes les notes au format bémol :
-        val allNotesBemol = ArrayList<String>(listOf(
-            "DO",
-            "RE♭",
-            "RE",
-            "MI♭",
-            "MI",
-            "FA",
-            "SOL♭",
-            "SOL",
-            "LA♭",
-            "LA",
-            "SI♭",
-            "SI"
-        ))
+        val allNotesBemol = ArrayList<String>(
+            listOf(
+                "DO",
+                "RE♭",
+                "RE",
+                "MI♭",
+                "MI",
+                "FA",
+                "SOL♭",
+                "SOL",
+                "LA♭",
+                "LA",
+                "SI♭",
+                "SI"
+            )
+        )
 
         // Liste d'instruments :
-        val instruments = ArrayList<MusicInstrument>(listOf(
-            MusicInstrument("Alto Saxophone", 3),
-            MusicInstrument("Guitar", 4),
-            MusicInstrument("Piano", 0),
-            MusicInstrument("Tenor Saxophone", 10),
-            MusicInstrument("Trumpet", 10)
-        ))
+        val instruments = ArrayList<MusicInstrument>(
+            listOf(
+                MusicInstrument("Alto Saxophone", 3),
+                MusicInstrument("Guitar", 4),
+                MusicInstrument("Piano", 0),
+                MusicInstrument("Tenor Saxophone", 10),
+                MusicInstrument("Trumpet", 10)
+            )
+        )
 
         // Liste de toutes les gammes :
-        val scalesList = ArrayList<Scale>(listOf(
-            Scale("DO Majeur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI","DO"))),
-            Scale("LA Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI","DO"))),
-            Scale("FA Majeur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI♭","DO"))),
-            Scale("RE Mineur", ArrayList(listOf("DO","RE","MI","FA","SOL","LA","SI♭","DO"))),
-            Scale("SI♭ Majeur", ArrayList(listOf("DO","RE","MI♭","FA","SOL","LA","SI♭","DO"))),
-            Scale("SOL Mineur", ArrayList(listOf("DO","RE","MI♭","FA","SOL","LA","SI","DO"))),
-            Scale("MI♭ Majeur", ArrayList(listOf("DO","RE","MI♭","FA","SOL","LA♭","SI♭","DO"))),
-            Scale("DO Mineur", ArrayList(listOf("DO","RE","MI♭","FA","SOL","LA♭","SI♭","DO"))),
-            Scale("LA♭ Majeur", ArrayList(listOf("DO","RE♭","MI♭","FA","SOL","LA♭","SI♭","DO"))),
-            Scale("FA Mineur", ArrayList(listOf("DO","RE♭","MI♭","FA","SOL","LA♭","SI♭","DO"))),
-            Scale("RE♭ Majeur", ArrayList(listOf("DO","RE♭","MI♭","FA","SOL♭","LA♭","SI♭","DO"))),
-            Scale("SI♭ Mineur", ArrayList(listOf("DO","RE♭","MI♭","FA","SOL♭","LA♭","SI♭","DO"))),
-            Scale("FA# Majeur", ArrayList(listOf("DO#","RE#","MI#","FA#","SOL#","LA#","SI","DO#"))),
-            Scale("RE# Mineur", ArrayList(listOf("DO#","RE#","MI#","FA#","SOL#","LA#","SI","DO#"))),
-            Scale("SI Majeur", ArrayList(listOf("DO#","RE#","MI","FA#","SOL#","LA#","SI","DO#"))),
-            Scale("SOL# Mineur", ArrayList(listOf("DO#","RE#","MI","FA#","SOL#","LA#","SI","DO#"))),
-            Scale("MI Majeur", ArrayList(listOf("DO#","RE#","MI","FA#","SOL#","LA","SI","DO#"))),
-            Scale("DO# Mineur", ArrayList(listOf("DO#","RE#","MI","FA#","SOL#","LA","SI","DO#"))),
-            Scale("LA Majeur", ArrayList(listOf("DO#","RE","MI","FA#","SOL#","LA","SI","DO#"))),
-            Scale("FA# Mineur", ArrayList(listOf("DO#","RE","MI","FA#","SOL#","LA","SI","DO#"))),
-            Scale("RE Majeur", ArrayList(listOf("DO#","RE","MI","FA#","SOL","LA","SI","DO#"))),
-            Scale("SI Mineur", ArrayList(listOf("DO#","RE","MI","FA#","SOL","LA","SI","DO#"))),
-            Scale("SOL Majeur", ArrayList(listOf("DO","RE","MI","FA#","SOL","LA","SI","DO"))),
-            Scale("MI Mineur", ArrayList(listOf("DO","RE","MI","FA#","SOL","LA","SI","DO"))))
+        val scalesList = ArrayList<Scale>(
+            listOf(
+                Scale(
+                    "DO Majeur",
+                    ArrayList(listOf("DO", "RE", "MI", "FA", "SOL", "LA", "SI", "DO"))
+                ),
+                Scale(
+                    "LA Mineur",
+                    ArrayList(listOf("DO", "RE", "MI", "FA", "SOL", "LA", "SI", "DO"))
+                ),
+                Scale(
+                    "FA Majeur",
+                    ArrayList(listOf("DO", "RE", "MI", "FA", "SOL", "LA", "SI♭", "DO"))
+                ),
+                Scale(
+                    "RE Mineur",
+                    ArrayList(listOf("DO", "RE", "MI", "FA", "SOL", "LA", "SI♭", "DO"))
+                ),
+                Scale(
+                    "SI♭ Majeur",
+                    ArrayList(listOf("DO", "RE", "MI♭", "FA", "SOL", "LA", "SI♭", "DO"))
+                ),
+                Scale(
+                    "SOL Mineur",
+                    ArrayList(listOf("DO", "RE", "MI♭", "FA", "SOL", "LA", "SI", "DO"))
+                ),
+                Scale(
+                    "MI♭ Majeur",
+                    ArrayList(listOf("DO", "RE", "MI♭", "FA", "SOL", "LA♭", "SI♭", "DO"))
+                ),
+                Scale(
+                    "DO Mineur",
+                    ArrayList(listOf("DO", "RE", "MI♭", "FA", "SOL", "LA♭", "SI♭", "DO"))
+                ),
+                Scale(
+                    "LA♭ Majeur",
+                    ArrayList(listOf("DO", "RE♭", "MI♭", "FA", "SOL", "LA♭", "SI♭", "DO"))
+                ),
+                Scale(
+                    "FA Mineur",
+                    ArrayList(listOf("DO", "RE♭", "MI♭", "FA", "SOL", "LA♭", "SI♭", "DO"))
+                ),
+                Scale(
+                    "RE♭ Majeur",
+                    ArrayList(listOf("DO", "RE♭", "MI♭", "FA", "SOL♭", "LA♭", "SI♭", "DO"))
+                ),
+                Scale(
+                    "SI♭ Mineur",
+                    ArrayList(listOf("DO", "RE♭", "MI♭", "FA", "SOL♭", "LA♭", "SI♭", "DO"))
+                ),
+                Scale(
+                    "FA# Majeur",
+                    ArrayList(listOf("DO#", "RE#", "MI#", "FA#", "SOL#", "LA#", "SI", "DO#"))
+                ),
+                Scale(
+                    "RE# Mineur",
+                    ArrayList(listOf("DO#", "RE#", "MI#", "FA#", "SOL#", "LA#", "SI", "DO#"))
+                ),
+                Scale(
+                    "SI Majeur",
+                    ArrayList(listOf("DO#", "RE#", "MI", "FA#", "SOL#", "LA#", "SI", "DO#"))
+                ),
+                Scale(
+                    "SOL# Mineur",
+                    ArrayList(listOf("DO#", "RE#", "MI", "FA#", "SOL#", "LA#", "SI", "DO#"))
+                ),
+                Scale(
+                    "MI Majeur",
+                    ArrayList(listOf("DO#", "RE#", "MI", "FA#", "SOL#", "LA", "SI", "DO#"))
+                ),
+                Scale(
+                    "DO# Mineur",
+                    ArrayList(listOf("DO#", "RE#", "MI", "FA#", "SOL#", "LA", "SI", "DO#"))
+                ),
+                Scale(
+                    "LA Majeur",
+                    ArrayList(listOf("DO#", "RE", "MI", "FA#", "SOL#", "LA", "SI", "DO#"))
+                ),
+                Scale(
+                    "FA# Mineur",
+                    ArrayList(listOf("DO#", "RE", "MI", "FA#", "SOL#", "LA", "SI", "DO#"))
+                ),
+                Scale(
+                    "RE Majeur",
+                    ArrayList(listOf("DO#", "RE", "MI", "FA#", "SOL", "LA", "SI", "DO#"))
+                ),
+                Scale(
+                    "SI Mineur",
+                    ArrayList(listOf("DO#", "RE", "MI", "FA#", "SOL", "LA", "SI", "DO#"))
+                ),
+                Scale(
+                    "SOL Majeur",
+                    ArrayList(listOf("DO", "RE", "MI", "FA#", "SOL", "LA", "SI", "DO"))
+                ),
+                Scale(
+                    "MI Mineur",
+                    ArrayList(listOf("DO", "RE", "MI", "FA#", "SOL", "LA", "SI", "DO"))
+                )
+            )
         )
 
         /*
@@ -108,13 +187,13 @@ class AppData {
         Procédure permettant d'écrire toutes nos partitions dans le fichier où elles sont entreposées.
         Il faudra passer le chemin jusqu'au fichier :
          */
-        fun writeAllTranspositions(path : File){
+        fun writeAllTranspositions(path: File) {
             try {
                 val oos = ObjectOutputStream(FileOutputStream(File(path, allTranspositionFile)))
                 oos.writeObject(allTranspositions)
                 oos.close()
-            } catch (error : IOException){
-                Log.d("Error write",error.toString())
+            } catch (error: IOException) {
+                Log.d("Error write", error.toString())
             }
         }
 

@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -14,6 +13,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -45,7 +45,7 @@ Elle implémente aussi un listener, NavigationView.OnNavigationItemSelectedListe
 pour gérer le menu de navigation.
  */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var sharedPref : SharedPreferences
+    private lateinit var sharedPref: SharedPreferences
     private lateinit var navigationView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,11 +62,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         CoroutineScope(Dispatchers.IO).launch {
             readAllTranspositions()
             // Une fois nos transpositions récupérées, on initialise la liste des favoris :
-            for (transposition in AppData.allTranspositions){
-                if (transposition.isFavourite && AppData.favouritesList.find { it.transpositionName == transposition.transpositionName } == null){
+            for (transposition in AppData.allTranspositions) {
+                if (transposition.isFavourite && AppData.favouritesList.find { it.transpositionName == transposition.transpositionName } == null) {
                     AppData.favouritesList.add(transposition)
                 }
-            }}
+            }
+        }
 
         findViewById<Button>(R.id.cloud_button).setOnClickListener { toCloudActivity() }
 
@@ -84,12 +85,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         viewPager.adapter = VpAdapter(this)
 
-        TabLayoutMediator(tabLayout, viewPager){tab, index ->
-            tab.text = when(index){
-                0 -> {resources.getString(R.string.scales)}
-                1 -> {resources.getString(R.string.transpositions)}
-                2 -> {resources.getString(R.string.favourites)}
-                else -> { throw Resources.NotFoundException("Position not found")}
+        TabLayoutMediator(tabLayout, viewPager) { tab, index ->
+            tab.text = when (index) {
+                0 -> {
+                    resources.getString(R.string.scales)
+                }
+                1 -> {
+                    resources.getString(R.string.transpositions)
+                }
+                2 -> {
+                    resources.getString(R.string.favourites)
+                }
+                else -> {
+                    throw Resources.NotFoundException("Position not found")
+                }
             }
         }.attach()
 
@@ -119,21 +128,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Mettons à jour les informations de l'utilisateur :
         CoroutineScope(Dispatchers.IO).launch {
             // Si l'utilisateur a fait des modifications, la clé apparait dans les sharedPreferences :
-            if (sharedPref.contains(AppData.USERNAME_KEY)){
-                val usernameField = navigationView.getHeaderView(0).findViewById<TextView>(R.id.username)
-                withContext(Dispatchers.Main){
+            if (sharedPref.contains(AppData.USERNAME_KEY)) {
+                val usernameField =
+                    navigationView.getHeaderView(0).findViewById<TextView>(R.id.username)
+                withContext(Dispatchers.Main) {
                     usernameField.text = sharedPref.getString(AppData.USERNAME_KEY, "")
                 }
             }
 
             // Si l'utilisateur a fait des modifications, la clé apparait dans les sharedPreferences :
-            if (sharedPref.contains(AppData.PROFILE_PICTURE_KEY)){
-                val profilePicture = navigationView.getHeaderView(0).findViewById<ShapeableImageView>(R.id.profile_picture)
-                val encodedImage = sharedPref.getString(AppData.PROFILE_PICTURE_KEY,"")
+            if (sharedPref.contains(AppData.PROFILE_PICTURE_KEY)) {
+                val profilePicture = navigationView.getHeaderView(0)
+                    .findViewById<ShapeableImageView>(R.id.profile_picture)
+                val encodedImage = sharedPref.getString(AppData.PROFILE_PICTURE_KEY, "")
                 val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
                 val bitmapImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     profilePicture.setImageBitmap(bitmapImage)
                 }
             }
@@ -141,26 +152,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // Procédure permettant d'aller dans l'activité du cloud :
-    private fun toCloudActivity(){
+    private fun toCloudActivity() {
         val intent = Intent(this, CloudActivity::class.java)
         startActivity(intent)
     }
 
     // Procédure permettant d'aller dans l'activité permettant de créer une transposition :
-    private fun createTransposition(){
+    private fun createTransposition() {
         val intent = Intent(this, TranspositionActivity::class.java)
         startActivity(intent)
     }
 
     // Procédure permettant d'ouvrir le menu de navigation :
-    private fun openNavigationMenu(drawerLayout : DrawerLayout){
+    private fun openNavigationMenu(drawerLayout: DrawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START)
     }
 
     // Fonction permettant de savoir quel item du menu de navigation a été séléctionné :
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.settings -> {
                 // Si on clique sur l'item settings, on change d'activité :
                 val intent = Intent(this, SettingsActivity::class.java)
@@ -172,15 +183,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // Procédure permettant de récupérations de nos transpositions :
-    private fun readAllTranspositions(){
+    private fun readAllTranspositions() {
         val path = applicationContext.filesDir
         var content = ArrayList<Transposition>()
         try {
             val ois = ObjectInputStream(FileInputStream(File(path, AppData.allTranspositionFile)))
             content = ois.readObject() as ArrayList<Transposition>
             ois.close()
-        } catch (error : IOException){
-            Log.d("Error read",error.toString())
+        } catch (error: IOException) {
+            Log.d("Error read", error.toString())
         }
         AppData.allTranspositions = content
     }
@@ -189,16 +200,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     Fonction permettant de vérifier si une permission a été accepté par l'utilisateur.
     La fonction prend une chaine de caractère en entrée (la permission à vérifier)
      */
-    private fun checkPermission(permission : String) : Boolean {
-        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     /*
     Fonction permettant de demander une permission à l'utilisateur.
     La fonction prend une chaine de caractère en entrée (la permission à valider)
      */
-    private fun requestPermission(permission : String) {
-        if(!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)){
+    private fun requestPermission(permission: String) {
+        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
             ActivityCompat.requestPermissions(this, arrayOf(permission), 69)
         }
     }
