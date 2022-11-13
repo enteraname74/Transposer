@@ -119,14 +119,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         // Mettons à jour les informations de l'utilisateur :
-        Log.d("SIZE", sharedPref.all.size.toString())
         CoroutineScope(Dispatchers.IO).launch {
+            // Si l'utilisateur a fait des modifications, la clé apparait dans les sharedPreferences :
             if (sharedPref.contains(AppData.USERNAME_KEY)){
                 val usernameField = navigationView.getHeaderView(0).findViewById<TextView>(R.id.username)
                 Log.d("HERE", usernameField.text.toString())
                 usernameField.text = sharedPref.getString(AppData.USERNAME_KEY, "")
             }
 
+            // Si l'utilisateur a fait des modifications, la clé apparait dans les sharedPreferences :
             if (sharedPref.contains(AppData.PROFILE_PICTURE_KEY)){
                 val profilePicture = navigationView.getHeaderView(0).findViewById<ShapeableImageView>(R.id.profile_picture)
                 val encodedImage = sharedPref.getString(AppData.PROFILE_PICTURE_KEY,"")
@@ -140,16 +141,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    // Procédure permettant d'aller dans l'activité du cloud :
     private fun toCloudActivity(){
         val intent = Intent(this, CloudActivity::class.java)
         startActivity(intent)
     }
 
+    // Procédure permettant d'aller dans l'activité permettant de créer une transposition :
     private fun createTransposition(){
         val intent = Intent(this, TranspositionActivity::class.java)
         startActivity(intent)
     }
 
+    // Procédure permettant d'ouvrir le menu de navigation :
     private fun openNavigationMenu(drawerLayout : DrawerLayout){
         drawerLayout.openDrawer(GravityCompat.START)
     }

@@ -22,7 +22,8 @@ class TranspositionsList(
     class TranspositionViewHolder(
         itemView: View,
         private var onScaleListener: OnTranspositionListener,
-        private var source: String
+        private var source: String,
+        private var list : ArrayList<Transposition>
     ) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener,
         View.OnCreateContextMenuListener {
@@ -61,7 +62,9 @@ class TranspositionsList(
                     adapterPosition,
                     if (source != "Favourites") 11 else 21,
                     0,
-                    itemView.resources.getString(R.string.change_favourite_statue)
+                    if (source != "Favourites" && list[adapterPosition].isFavourite) itemView.resources.getString(R.string.remove_from_favourites)
+                    else if (source != "Favourites" && !(list[adapterPosition].isFavourite)) itemView.resources.getString(R.string.add_to_favourites)
+                    else itemView.resources.getString(R.string.remove_from_favourites)
                 )
                 menu?.add(
                     adapterPosition,
@@ -93,7 +96,8 @@ class TranspositionsList(
                 parent,
                 false,
             ), transpositionListener,
-            source
+            source,
+            list
         )
     }
 
